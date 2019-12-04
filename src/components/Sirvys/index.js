@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import database from '../../firebase/firebase'
 
 class Sirvys extends Component {
 
   state = {
     
+  }
+
+  componentDidMount() {
+    database.ref().set('this will work')
   }
 
   render () {
