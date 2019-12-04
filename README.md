@@ -1,5 +1,17 @@
 ### `Sirvy`
 
+user stories
+
+a user can log in, using third party verification
+
+a user can update their profile
+
+a user can store numbers
+
+a user can send surveys and recieve info back on them
+
+a user can save the data of those surveys, visualize it and make pdfs of it
+
 Sirvy is the best
 
 i'm thinking some simple crud stuff stored locally, auth handled by firebase. maybe storage on firebase? though i don't know what i'd need to store.
