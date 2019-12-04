@@ -4,10 +4,10 @@ dotenv.config();
 
 const app = express()
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT
 
-app.get('/', (req,res) => {
-    res.json({name:"Tim", friendly : "sometimes"})
+app.get('/test', (req,res) => {
+    res.json({name : "Tim", friendly : "sometimes"})
 })
 
 app.listen(PORT, () => {
