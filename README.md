@@ -1,5 +1,6 @@
 ### `Sirvy`
 
+git auth to work with firebase
 get text to recieve from backend
 
 user stories

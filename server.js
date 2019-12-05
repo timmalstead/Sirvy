@@ -1,12 +1,9 @@
-// import client from './send_sms'
-
 const express = require ('express')
 const dotenv = require('dotenv');
 dotenv.config();
+const client = require('twilio')(process.env.TWILIO_SID,process.env.TWILIO_TOKEN)
 
 const app = express()
-
-const client = require('twilio')(process.env.TWILIO_SID,process.env.TWILIO_TOKEN)
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
