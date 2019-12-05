@@ -7,8 +7,25 @@ class Sirvys extends Component {
     
   }
 
+  sendSmsMessage = async () => {
+    const testMessage = {
+      body : 'howdy',
+      from : '+12132141135',
+      to : '+17604683754'
+    }
+    const test = await fetch(`/send`, {
+      method : 'POST',
+      body : JSON.stringify(testMessage),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    })
+
+  }
+
   componentDidMount() {
-    database.ref().set('this will work')
+    database.ref().set('what is that?')
+    this.sendSmsMessage()
   }
 
   render () {
