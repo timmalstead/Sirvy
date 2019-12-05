@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import database from '../../firebase/firebase'
+import {database} from '../../firebase/firebase'
 
 class Sirvys extends Component {
 
@@ -9,9 +9,8 @@ class Sirvys extends Component {
 
   sendSmsMessage = async () => {
     const testMessage = {
-      body : 'howdy',
-      from : '+12132141135',
-      to : '+17604683754'
+      body : 'what is to be done',
+      to : 'number'
     }
     const test = await fetch(`/send`, {
       method : 'POST',
@@ -20,11 +19,10 @@ class Sirvys extends Component {
         'Content-Type' : 'application/json'
       }
     })
-
   }
 
   componentDidMount() {
-    database.ref().set('what is that?')
+    database.ref().set('hi tim')
     this.sendSmsMessage()
   }
 

@@ -17,7 +17,7 @@ app.get('/test', (req,res) => {
 app.post('/send', (req,res) => {
     // client.messages.create({
     //     body : req.body.body,
-    //     from : req.body.from,
+    //     from : process.env.TWILIO_FROM_NUMBER,
     //     to : req.body.to
     // })
 })
