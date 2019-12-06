@@ -10,12 +10,13 @@ app.use(express.json())
 
 const PORT = process.env.PORT
 
-app.get('/test', (req,res) => {
-    res.json({name : "Tim", friendly : "sometimes"})
+const textCache = []
+
+app.get('/recieve', (req,res) => {
+    res.json(textCache)
 })
 
 app.post('/send', (req,res) => {
-    console.log("hitting")
     client.messages.create({
         body : req.body.body,
         from : process.env.TWILIO_FROM_NUMBER,
@@ -24,7 +25,10 @@ app.post('/send', (req,res) => {
 })
 
 app.post('/sms', (req,res) => {
-    console.log(req.body)
+    console.log(req.body.Body)
+    const returnedText = {returningNumber : req.body.From, returningText : req.body.Body}
+    textCache.push(returnedText)
+    console.log(textCache)
 })
 
 app.listen(PORT, () => {
