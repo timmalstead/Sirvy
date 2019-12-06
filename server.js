@@ -2,8 +2,10 @@ const express = require ('express')
 const dotenv = require('dotenv');
 dotenv.config();
 const client = require('twilio')(process.env.TWILIO_SID,process.env.TWILIO_TOKEN)
+const http = require('http')
 
 const app = express()
+const server = http.Server(app)
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
@@ -31,6 +33,6 @@ app.post('/sms', (req,res) => {
     console.log(textCache)
 })
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Running on ${PORT}`)
 })
