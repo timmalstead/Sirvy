@@ -16,10 +16,6 @@ const PORT = process.env.PORT
 
 const textCache = []
 
-// app.get('/recieve', (req,res) => {
-//     res.json(textCache)
-// })
-
 app.post('/send', (req,res) => {
     client.messages.create({
         body : req.body.body,
