@@ -12,7 +12,7 @@ class Sirvys extends Component {
       body : 'what is to be done',
       to : 'number'
     }
-    const test = await fetch(`/send`, {
+    await fetch(`/send`, {
       method : 'POST',
       body : JSON.stringify(testMessage),
       headers: {

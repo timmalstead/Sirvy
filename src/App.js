@@ -11,12 +11,14 @@ import Footer from './components/Footer'
 class App extends Component {
 
   state = {
-    isLoggedIn : false
+    isLoggedIn : false,
+    currentUser : null
   }
 
-  logInUser = () => {
+  logInUser = currentUser => {
     this.setState({
-      isLoggedIn : true
+      isLoggedIn : true,
+      currentUser
     })
   }
 

@@ -1,6 +1,7 @@
 ### `Sirvy`
 
-git auth to work with firebase
+you will need to update the url for facebook login when deploying most likely
+
 get text to recieve from backend
 
 user stories

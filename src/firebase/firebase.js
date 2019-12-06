@@ -19,8 +19,12 @@ const database = firebase.database()
 
 const auth = firebase.auth()
 const googleProvider = new firebase.auth.GoogleAuthProvider()
+const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
 const signInWithGoogle = () =>
   auth.signInWithPopup(googleProvider)
 
-export {database , signInWithGoogle}
+const signInWithFacebook = () => 
+  auth.signInWithPopup(facebookProvider)
+
+export {database , signInWithGoogle, signInWithFacebook}
