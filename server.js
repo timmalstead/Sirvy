@@ -15,11 +15,16 @@ app.get('/test', (req,res) => {
 })
 
 app.post('/send', (req,res) => {
-    // client.messages.create({
-    //     body : req.body.body,
-    //     from : process.env.TWILIO_FROM_NUMBER,
-    //     to : req.body.to
-    // })
+    console.log("hitting")
+    client.messages.create({
+        body : req.body.body,
+        from : process.env.TWILIO_FROM_NUMBER,
+        to : req.body.to
+    })
+})
+
+app.post('/sms', (req,res) => {
+    console.log(req.body)
 })
 
 app.listen(PORT, () => {

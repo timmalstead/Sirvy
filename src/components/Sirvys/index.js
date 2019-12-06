@@ -10,7 +10,7 @@ class Sirvys extends Component {
   sendSmsMessage = async () => {
     const testMessage = {
       body : 'what is to be done',
-      to : 'number'
+      to : '+17604683754'
     }
     await fetch(`/send`, {
       method : 'POST',
