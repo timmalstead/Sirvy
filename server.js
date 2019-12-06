@@ -3,9 +3,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 const client = require('twilio')(process.env.TWILIO_SID,process.env.TWILIO_TOKEN)
 const http = require('http')
+const io = require('./io')
 
 const app = express()
 const server = http.Server(app)
+io.attach(server)
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
@@ -14,9 +16,9 @@ const PORT = process.env.PORT
 
 const textCache = []
 
-app.get('/recieve', (req,res) => {
-    res.json(textCache)
-})
+// app.get('/recieve', (req,res) => {
+//     res.json(textCache)
+// })
 
 app.post('/send', (req,res) => {
     client.messages.create({
@@ -24,13 +26,14 @@ app.post('/send', (req,res) => {
         from : process.env.TWILIO_FROM_NUMBER,
         to : req.body.to
     })
+    console.log(req.body.to)
 })
 
 app.post('/sms', (req,res) => {
     console.log(req.body.Body)
     const returnedText = {returningNumber : req.body.From, returningText : req.body.Body}
     textCache.push(returnedText)
-    console.log(textCache)
+    io.emit('sms', {data: textCache})
 })
 
 server.listen(PORT, () => {

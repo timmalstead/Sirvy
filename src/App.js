@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom'
+// import SocketIOClient from 'socket.io-client'
 
 import './App.css';
 
@@ -9,7 +10,7 @@ import Sirvys from './components/Sirvys'
 import Footer from './components/Footer'
 
 class App extends Component {
-
+  
   state = {
     isLoggedIn : false,
     currentUser : null
@@ -22,6 +23,10 @@ class App extends Component {
     })
   }
 
+  componentDidMount() {
+    // const socket =SocketIOClient(process.env.REACT_APP_URL)
+    // socket.on('sms', data => console.log(data))
+  }
   render () {
     return (
       <main>
