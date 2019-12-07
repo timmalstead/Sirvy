@@ -2,6 +2,17 @@
 
 you will need to update the url for facebook login when deploying most likely
 
+to do
+    change password and username by email
+    add sirvy function
+    save sirvy function
+    add number to send function
+    full crud for both sirvys, users and numbers
+    figure out how to do groups to send to
+    data visualization
+    pdf graphic and email send
+    style, of course
+
 user stories
 
 a user can log in, using third party verification

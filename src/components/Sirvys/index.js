@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {database} from '../../firebase/firebase'
+// import {database} from '../../firebase/firebase'
 import SocketIOClient from 'socket.io-client'
 
 class Sirvys extends Component {
@@ -35,7 +35,9 @@ class Sirvys extends Component {
   componentDidMount() {
     // database.ref().set('hi tim')
     const socket =SocketIOClient(process.env.REACT_APP_URL)
-    socket.on('sms', data => console.log(data))
+    socket.on('sms', data =>  this.setState({
+      returnedTexts : data.data
+    }))
   }
 
   render () {
@@ -47,7 +49,6 @@ class Sirvys extends Component {
           <input type='text' name='numberToText' value={numberToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
           <button type='submit'>Send Text</button>
         </form>
-        <button type='button' onClick={this.getSirvyResponses}>Get Messages</button>
       </div>
     )
   }

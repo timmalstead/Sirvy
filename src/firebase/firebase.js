@@ -20,10 +20,27 @@ const auth = firebase.auth()
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
+const createUserWithEmailAndPassword = (email,password) =>
+  auth.createUserWithEmailAndPassword(email,password)
+
+const signInWithEmailAndPassword = (email,password) =>
+  auth.signInWithEmailAndPassword(email,password)
+
 const signInWithGoogle = () =>
   auth.signInWithPopup(googleProvider)
 
 const signInWithFacebook = () => 
   auth.signInWithPopup(facebookProvider)
 
-export {database , signInWithGoogle, signInWithFacebook}
+const passwordReset = email => auth.sendPasswordResetEmail(email)
+
+const signOut = () => auth.signOut()
+
+export {
+  database, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signInWithGoogle, 
+  signInWithFacebook,
+  passwordReset,
+  signOut}

@@ -23,6 +23,13 @@ class App extends Component {
     })
   }
 
+  logOutUser = () => {
+    this.setState({
+      isLoggedIn : false,
+      currentUser : null
+    })
+  }
+
   componentDidMount() {
     // const socket =SocketIOClient(process.env.REACT_APP_URL)
     // socket.on('sms', data => console.log(data))
@@ -30,7 +37,7 @@ class App extends Component {
   render () {
     return (
       <main>
-        <Navbar isLoggedIn={this.state.isLoggedIn} logInUser={this.logInUser}/>
+        <Navbar isLoggedIn={this.state.isLoggedIn} logInUser={this.logInUser} logOutUser={this.logOutUser}/>
         <Switch>
           {this.state.isLoggedIn ? 
           <Route exact path = '/profile' render={() => <Profile isLoggedIn={this.state.isLoggedIn}/>} />
