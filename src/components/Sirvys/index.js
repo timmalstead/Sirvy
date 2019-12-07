@@ -49,7 +49,7 @@ class Sirvys extends Component {
           <input type='text' name='numberToText' value={numberToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
           <button type='submit'>Send Text</button>
         </form>
-        {returnedTexts.length ? <h3>{returnedTexts[0].returningText}</h3> : null}
+        {returnedTexts.length ? <h3>{returnedTexts[returnedTexts.length - 1].returningText}</h3> : null}
       </div>
     )
   }
