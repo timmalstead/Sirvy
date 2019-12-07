@@ -21,6 +21,7 @@ io.on('connect', function(socket){
 const textCache = []
 
 app.post('/send', (req,res) => {
+    textCache.length = 0
     client.messages.create({
         body : req.body.body,
         from : process.env.TWILIO_FROM_NUMBER,
