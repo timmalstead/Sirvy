@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 
 import {
-    // database,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signInWithGoogle, 
@@ -73,13 +72,6 @@ class Navbar extends Component {
         signOut()
         this.props.logOutUser()
         this.props.history.push('/')
-    }
-
-
-    componentDidMount() {
-        // database.ref('users/').set(
-        //     {howdy : 'hi'}
-        // )
     }
 
     render () {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom'
-// import SocketIOClient from 'socket.io-client'
 
 import './App.css';
 
@@ -60,6 +59,17 @@ class App extends Component {
     })
   }
 
+  changeUsername = username => {
+    const {currentUser} = this.state
+    this.setState({
+      currentUser : {...currentUser, username}
+    })
+    const userReq = database.ref(`users/${currentUser.uid}`)
+      userReq.update({
+        username : username
+      })
+  }
+
   logOutUser = () => {
     this.setState({
       isLoggedIn : false,
@@ -67,26 +77,38 @@ class App extends Component {
     })
   }
 
-  componentDidMount() {
-    // const socket =SocketIOClient(process.env.REACT_APP_URL)
-    // socket.on('sms', data => console.log(data))
-  }
   render () {
+    const {isLoggedIn, currentUser} = this.state
     return (
       <main>
         <Navbar 
-          isLoggedIn={this.state.isLoggedIn} 
-          currentUser={this.state.currentUser} 
+          isLoggedIn={isLoggedIn} 
+          currentUser={currentUser} 
           logInUser={this.logInUser}
           signUpUser={this.signUpUser} 
           logOutUser={this.logOutUser}
         />
         <Switch>
-          {this.state.isLoggedIn ? 
-          <Route exact path = '/profile' render={() => <Profile isLoggedIn={this.state.isLoggedIn}/>} />
+          {isLoggedIn ? 
+          <Route 
+            exact path = '/profile' 
+            render={() => 
+            <Profile 
+              isLoggedIn={isLoggedIn} 
+              currentUser={currentUser}
+              changeUsername={this.changeUsername}
+            />}
+          />
           : null}
-          {this.state.isLoggedIn ? 
-          <Route exact path = '/sirvys' render={() => <Sirvys isLoggedIn={this.state.isLoggedIn}/>} />
+          {isLoggedIn ? 
+          <Route 
+            exact path = '/sirvys' 
+            render={() => 
+            <Sirvys 
+              isLoggedIn={isLoggedIn} 
+              currentUser={currentUser}
+            />}
+          /> 
           : null}
         </Switch>
         <Footer />

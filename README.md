@@ -3,11 +3,11 @@
 you will need to update the url for facebook login when deploying most likely
 
 to do
-    change password and username by email
+    change password email, delete user
     add sirvy function
     save sirvy function
     add number to send function
-    full crud for both sirvys, users and numbers
+    full crud for both sirvys and numbers
     figure out how to do groups to send to
     data visualization
     pdf graphic and email send
@@ -15,7 +15,7 @@ to do
 
 user stories
 
-a user can log in, using third party verification
+a user can log in, using third party verification or their own email
 
 a user can update their profile
 
