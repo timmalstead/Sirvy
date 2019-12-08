@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 
 import {
+    // database,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signInWithGoogle, 
@@ -45,9 +46,10 @@ class Navbar extends Component {
             signIn = signInWithEmailAndPassword(email, password)
         }
         signIn.then(socialAuthUser => {
-            const user = {username : socialAuthUser.user.email.substring(0, socialAuthUser.user.email.indexOf('@')) , email : socialAuthUser.user.email}
-            console.log(user)
-            this.props.logInUser(user)
+            const usernameCropped = socialAuthUser.user.email.substring(0, socialAuthUser.user.email.indexOf('@'))
+            const user = {username : usernameCropped.charAt(0).toUpperCase() + usernameCropped.substring(1) , email : socialAuthUser.user.email , signInMethod : this.state.signInMethod, uid : socialAuthUser.user.uid}
+            socialAuthUser.additionalUserInfo.isNewUser ? 
+                this.props.signUpUser(user) : this.props.logInUser(user)
         }).catch(error => this.setState({error}))
     }
 
@@ -61,8 +63,9 @@ class Navbar extends Component {
             signIn = signInWithFacebook()
         }
         signIn.then(socialAuthUser => {
-            const user = {username : socialAuthUser.user.displayName , email : socialAuthUser.user.email}
-            this.props.logInUser(user)
+            const user = {username : socialAuthUser.user.displayName , email : socialAuthUser.user.email , signInMethod : this.state.signInMethod, uid : socialAuthUser.user.uid}
+            socialAuthUser.additionalUserInfo.isNewUser ? 
+                this.props.signUpUser(user) : this.props.logInUser(user)
         }).catch(error => this.setState({error}))
     }
 
@@ -72,8 +75,16 @@ class Navbar extends Component {
         this.props.history.push('/')
     }
 
+
+    componentDidMount() {
+        // database.ref('users/').set(
+        //     {howdy : 'hi'}
+        // )
+    }
+
     render () {
         const {error, email, password, confirmPassword, signingUp} = this.state
+        const {currentUser} = this.props
         const isInvalid = password !== confirmPassword || password === '' || confirmPassword === ''
         return (
             <NavStyle>
@@ -131,6 +142,10 @@ class Navbar extends Component {
                     <button type='button' onClick={this.signOut}>Sign Out</button> 
                 : 
                     null
+                }
+                {currentUser ? 
+                    <h3>Hello {currentUser.username}</h3> 
+                    : null
                 }
             </NavStyle>
         )
