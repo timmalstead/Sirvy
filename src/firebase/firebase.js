@@ -19,6 +19,7 @@ const database = firebase.database()
 const auth = firebase.auth()
 const googleProvider = new firebase.auth.GoogleAuthProvider()
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
+// const user = auth().currentUser
 
 const createUserWithEmailAndPassword = (email,password) =>
   auth.createUserWithEmailAndPassword(email,password)
@@ -34,9 +35,12 @@ const signInWithFacebook = () =>
 
 const passwordReset = email => auth.sendPasswordResetEmail(email)
 
+// const deleteUser = user.delete().catch( err => console.log(err))
+
 const signOut = () => auth.signOut()
 
 export {
+  auth,
   database, 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 

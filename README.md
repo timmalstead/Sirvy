@@ -3,7 +3,6 @@
 you will need to update the url for facebook login when deploying most likely
 
 to do
-    change password email, delete user
     add sirvy function
     save sirvy function
     add number to send function

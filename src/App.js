@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, withRouter} from 'react-router-dom'
 
 import './App.css';
 
@@ -8,7 +8,7 @@ import Profile from './components/Profile'
 import Sirvys from './components/Sirvys'
 import Footer from './components/Footer'
 
-import {database} from './firebase/firebase'
+import {database, signOut, auth} from './firebase/firebase'
 
 class App extends Component {
   
@@ -65,9 +65,22 @@ class App extends Component {
       currentUser : {...currentUser, username}
     })
     const userReq = database.ref(`users/${currentUser.uid}`)
-      userReq.update({
-        username : username
-      })
+    userReq.update({
+      username : username
+    })
+  }
+
+  deleteUser = () => {
+    const userToDelete = database.ref(`users/${this.state.currentUser.uid}`)
+    userToDelete.remove().catch( err => console.log(err))
+    this.setState({
+      isLoggedIn : false,
+      currentUser : null
+    })
+    const user = auth.currentUser
+    user.delete().catch(err => console.log(err))
+    signOut()
+    this.props.history.push('/')
   }
 
   logOutUser = () => {
@@ -97,6 +110,8 @@ class App extends Component {
               isLoggedIn={isLoggedIn} 
               currentUser={currentUser}
               changeUsername={this.changeUsername}
+              deleteUser={this.deleteUser}
+              logOutUser={this.logOutUser}
             />}
           />
           : null}
@@ -117,4 +132,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App)
