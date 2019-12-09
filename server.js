@@ -21,13 +21,16 @@ io.on('connect', function(socket){
 const textCache = []
 
 app.post('/send', (req,res) => {
+    console.log(req.body)
     textCache.length = 0
-    client.messages.create({
-        body : req.body.body,
-        from : process.env.TWILIO_FROM_NUMBER,
-        to : req.body.to
-    })
-    console.log(req.body.to)
+    req.body.to.forEach( sendNumber => 
+        client.messages.create({
+            body : req.body.body,
+            from : process.env.TWILIO_FROM_NUMBER,
+            to : sendNumber
+        })
+    )
+    res.json({message : 'sent'})
 })
 
 app.post('/sms', (req,res) => {

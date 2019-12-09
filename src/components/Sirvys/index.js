@@ -19,22 +19,24 @@ class Sirvys extends Component {
 
   sendSmsMessage = async (e) => {
     e.preventDefault()
-    // const message = {
-    //   body : this.state.textBody,
-    //   to : `+1${this.state.numbersToText}`
-    // }
+
+    const numbers = this.state.numbersToText.map(recipient => `1${recipient.number}`)
+
     const message = {
       body : this.state.textBody,
-      to : this.state.numbersToText
+      to : numbers
     }
-    await fetch(`/send`, {
+
+    const sending = await fetch(`/send`, {
       method : 'POST',
       body : JSON.stringify(message),
       headers: {
         'Content-Type' : 'application/json',
       }
     })
-    console.log(message)
+    
+    const sent = await sending.json()
+    console.log(sent)
   }
 
   addSirvyRecipient = (e) => {
@@ -101,7 +103,11 @@ class Sirvys extends Component {
           <input type='text' name='currentNumToText' value={currentNumToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
           <button type='submit'>Add Sirvy Recipient</button>
         </form>
-        {returnedTexts.length ? <h3>{returnedTexts[returnedTexts.length - 1].returningText}</h3> : null}
+        {/* {returnedTexts.length ? <h3>{returnedTexts[returnedTexts.length - 1].returningText}</h3> : null} */}
+        {returnedTexts.length ? 
+          returnedTexts.map( text => <p>{text.returningText}</p> )
+        : 
+          null}
         {error ? <p>{error}</p> : null}
         <DisplayNums numbersToText={numbersToText} deleteNumber={this.deleteNumber}/>
       </div>
