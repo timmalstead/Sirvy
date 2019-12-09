@@ -14,7 +14,8 @@ class Sirvys extends Component {
     numbersToText : [],
     returnedTexts : [],
     optionA : '',
-    optionB : ''
+    optionB : '',
+    savedSirvys : [],
   }
 
   populateBodyOfText = () => this.setState({
@@ -30,7 +31,7 @@ class Sirvys extends Component {
 
     b) ${this.state.optionB}?
 
-    Please reply a or b.
+    Please reply ONLY with a lowercase a or b.
     Sent from Sirvy: Beautiful SMS Surveys`
   })
   
@@ -43,15 +44,19 @@ class Sirvys extends Component {
     })
   }
 
-  sendSmsMessage = async (e) => {
+  
+  sendSirvy = async (e, i) => {
     e.preventDefault()
-    this.populateBodyOfText()
-    const numbers = this.state.numbersToText.map(recipient => `1${recipient.number}`)
 
+    const numbers = this.state.numbersToText.map(recipientNum => `1${recipientNum.number}`)
+    const names = this.state.numbersToText.map(names => names.name)
+    
     const message = {
-      body : this.state.textBody,
+      names : names,
+      body : e.target.name ? this.state.savedSirvys[i].sirvy : this.state.textBody,
       to : numbers
     }
+    
     const sending = await fetch(`/send`, {
       method : 'POST',
       body : JSON.stringify(message),
@@ -62,6 +67,24 @@ class Sirvys extends Component {
     
     const sent = await sending.json()
     console.log(sent)
+    // this.saveSirvy()
+    this.setState({
+      optionA : '',
+      optionB : '',
+    })
+  }
+
+  // prepSavedSirvy = (e, i) => {
+  //   e.preventDefault()
+  //   this.setState({textBody : this.state.savedSirvys[i].sirvy})
+  //   this.sendSirvy()
+  // }
+
+  // sendSavedSirvy = () 
+
+  saveSirvy = () => {
+    database.ref(`sirvys/${this.props.currentUser.uid}`).push(this.state.textBody)
+      .catch(error => this.setState({error}))
   }
 
   addSirvyRecipient = (e) => {
@@ -90,8 +113,12 @@ class Sirvys extends Component {
     database.ref(`numbers/${this.props.currentUser.uid}/${key}`).remove()
   }
 
+  deleteSirvy = (key) => {
+    database.ref(`sirvys/${this.props.currentUser.uid}/${key}`).remove()
+  }
+
   componentDidMount() {
-    const {numbersToText} = this.state
+    const {numbersToText, savedSirvys} = this.state
 
     const socket =SocketIOClient(process.env.REACT_APP_URL)
 
@@ -112,15 +139,28 @@ class Sirvys extends Component {
         })
       } 
     )
+    
+    database.ref(`sirvys/${this.props.currentUser.uid}`).on('value', snapshot => {
+      const data = snapshot.val()
+      delete data.initialize
+      const helperArray = []
+      for (const sirvy in data) {
+        helperArray.push({sirvy : data[sirvy]})
+      }
+      Object.keys(data).forEach( (key, i) => helperArray[i].key = key)
+      this.setState({
+        savedSirvys : [...savedSirvys, ...helperArray]
+      })
+    })
 
   }
 
   render () {
-    const {currentNumToText, returnedTexts, numbersToText, nameToText, error, optionA, optionB} = this.state
+    const {currentNumToText, returnedTexts, numbersToText, nameToText, error, optionA, optionB, savedSirvys} = this.state
     const {currentUser} = this.props
     return (
       <div>
-        <form onSubmit={this.sendSmsMessage}>
+        <form onSubmit={this.sendSirvy}>
           <p>Your Sirvy will look like this:</p>
           <p>
             Hello *MESSAGE RECIPIENT*, {currentUser.username} would like to ask you a question: do you prefer
@@ -130,22 +170,33 @@ class Sirvys extends Component {
           <span> or b)</span>
           <input type='text' name='optionB' value={optionB} placeholder="Second Option Here" onChange={this.onChange}/>
           <span>?</span>
-          <p>Please reply a or b.</p>
+          <p>Please reply ONLY with a lowercase a or b.</p>
           <p>Sent from Sirvy: Beautiful SMS Surveys</p>
           <button type='submit'>Send Sirvy</button>
+          <button type='button' onClick={this.saveSirvy}>Save Sirvy</button>
         </form>
         <form onSubmit={this.addSirvyRecipient}>
           <input type='text' name='nameToText' value={nameToText} placeholder="Add Sirvy Recipient" onChange={this.onChange} />
           <input type='text' name='currentNumToText' value={currentNumToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
           <button type='submit'>Add Sirvy Recipient</button>
         </form>
-        {/* {returnedTexts.length ? <h3>{returnedTexts[returnedTexts.length - 1].returningText}</h3> : null} */}
-        {returnedTexts.length ? 
+        {returnedTexts ? 
           returnedTexts.map( text => <p>{text.returningText}</p> )
         : 
           null}
         {error ? <p>{error}</p> : null}
         <DisplayNums numbersToText={numbersToText} deleteNumber={this.deleteNumber}/>
+        {savedSirvys ?
+          savedSirvys.map( (sirvy, i) => {
+            return <form name='sendSaved' onSubmit={e => this.sendSirvy(e, i)} key={sirvy.key}>
+                      <span>{sirvy.sirvy}</span>
+                      <button type='button' onClick={() => this.deleteSirvy(sirvy.key)}>Delete Sirvy</button>
+                      <button type='submit'>Send Saved Sirvy</button>
+                   </form>
+          })
+        :
+          null
+        }
       </div>
     )
   }
