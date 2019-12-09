@@ -4,7 +4,9 @@ you will need to update the url for facebook login when deploying most likely
 
 to do
     add sirvy function
+    send each name for sirvys on backend
     crud for sirvys
+    display sirvys
     data visualization
     style and graphics, of course
     finish readme

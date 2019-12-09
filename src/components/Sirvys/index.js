@@ -12,21 +12,46 @@ class Sirvys extends Component {
     currentNumToText : '',
     nameToText : '',
     numbersToText : [],
-    returnedTexts : []
+    returnedTexts : [],
+    optionA : '',
+    optionB : ''
   }
 
-  onChange = e => this.setState({[e.target.name]: e.target.value})
+  populateBodyOfText = () => this.setState({
+    textBody : 
+    `Hello *MESSAGE RECIPIENT*,
+    ${this.props.currentUser.username} would like to ask you a question:
+
+    Do you prefer
+
+    a) ${this.state.optionA}
+
+    or
+
+    b) ${this.state.optionB}?
+
+    Please reply a or b.
+    Sent from Sirvy: Beautiful SMS Surveys`
+  })
+  
+  onChange = e => {
+    e.persist()
+    this.setState({[e.target.name]: e.target.value}, () => {
+      if (e.target.name === 'optionA' || e.target.name === 'optionB') {
+        this.populateBodyOfText()
+      }
+    })
+  }
 
   sendSmsMessage = async (e) => {
     e.preventDefault()
-
+    this.populateBodyOfText()
     const numbers = this.state.numbersToText.map(recipient => `1${recipient.number}`)
 
     const message = {
       body : this.state.textBody,
       to : numbers
     }
-
     const sending = await fetch(`/send`, {
       method : 'POST',
       body : JSON.stringify(message),
@@ -91,15 +116,26 @@ class Sirvys extends Component {
   }
 
   render () {
-    const {textBody, currentNumToText, returnedTexts, numbersToText, nameToText, error} = this.state
+    const {currentNumToText, returnedTexts, numbersToText, nameToText, error, optionA, optionB} = this.state
+    const {currentUser} = this.props
     return (
       <div>
         <form onSubmit={this.sendSmsMessage}>
-          <input type='text' name='textBody' value={textBody} placeholder="Text body here" onChange={this.onChange}/>
+          <p>Your Sirvy will look like this:</p>
+          <p>
+            Hello *MESSAGE RECIPIENT*, {currentUser.username} would like to ask you a question: do you prefer
+          </p>
+          <span> a)</span>
+          <input type='text' name='optionA' value={optionA} placeholder="First Option Here" onChange={this.onChange}/>
+          <span> or b)</span>
+          <input type='text' name='optionB' value={optionB} placeholder="Second Option Here" onChange={this.onChange}/>
+          <span>?</span>
+          <p>Please reply a or b.</p>
+          <p>Sent from Sirvy: Beautiful SMS Surveys</p>
           <button type='submit'>Send Sirvy</button>
         </form>
         <form onSubmit={this.addSirvyRecipient}>
-          <input type='text' name='nameToText' value={nameToText} placeholder="Sirvy Recipient" onChange={this.onChange} />
+          <input type='text' name='nameToText' value={nameToText} placeholder="Add Sirvy Recipient" onChange={this.onChange} />
           <input type='text' name='currentNumToText' value={currentNumToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
           <button type='submit'>Add Sirvy Recipient</button>
         </form>

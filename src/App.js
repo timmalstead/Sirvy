@@ -74,7 +74,11 @@ class App extends Component {
 
   deleteUser = () => {
     const userToDelete = database.ref(`users/${this.state.currentUser.uid}`)
+    const userNumbersToDelete = database.ref(`numbers/${this.state.currentUser.uid}`)
+    const userSirvysToDelete = database.ref(`sirvys/${this.state.currentUser.uid}`)
     userToDelete.remove().catch( err => console.log(err))
+    userNumbersToDelete.remove().catch( err => console.log(err))
+    userSirvysToDelete.remove().catch( err => console.log(err))
     this.setState({
       isLoggedIn : false,
       currentUser : null

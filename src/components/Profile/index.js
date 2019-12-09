@@ -32,13 +32,17 @@ class Profile extends Component {
       <div>
         <p>{signInMethod}</p>
         <p>{email}</p>
+        {signInMethod === 'signIn' ?
+          <button type='button' onClick={this.passwordResetEmail}>Send Password Reset Email and Logout</button>
+        :
+          null
+        }
         <form onSubmit={this.handleChange}>
           <span>Change Username</span>
           <input type='text' name='tempUserName' value={tempUserName} placeholder={username} onChange={this.onChange}/>
           <button type='submit'>Change Username</button>
+          <button type='button' onClick={this.props.deleteUser}>Delete User</button>
         </form>
-        <button type='button' onClick={this.passwordResetEmail}>Send Password Reset Email and Logout</button>
-        <button type='button' onClick={this.props.deleteUser}>Delete User</button>
       </div>
     )
   }
