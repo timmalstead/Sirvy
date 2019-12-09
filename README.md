@@ -3,14 +3,16 @@
 you will need to update the url for facebook login when deploying most likely
 
 to do
+    send and recieve to/from multiple numbers
     add sirvy function
-    save sirvy function
-    add number to send function
-    full crud for both sirvys and numbers
-    figure out how to do groups to send to
+    crud for sirvys
     data visualization
-    pdf graphic and email send
-    style, of course
+    style and graphics, of course
+        stretch
+            edit numbers
+            organize groups
+            drag and drop
+            pdf graphic and email send
 
 user stories
 

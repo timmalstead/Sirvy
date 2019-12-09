@@ -8,12 +8,6 @@ class Profile extends Component {
     tempUserName : ''
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     tempUserName : this.props.currentUser.username
-  //   })
-  // }
-
   onChange = e => 
     this.setState({
       [e.target.name] : e.target.value

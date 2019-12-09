@@ -53,6 +53,8 @@ class App extends Component {
 
   signUpUser = async currentUser => {
     await database.ref(`users/${currentUser.uid}`).set(currentUser)
+    await database.ref(`numbers/${currentUser.uid}`).set({initialize : currentUser.uid})
+    await database.ref(`sirvys/${currentUser.uid}`).set({initialize : currentUser.uid})
     this.setState({
       isLoggedIn : true,
       currentUser : {...currentUser}
