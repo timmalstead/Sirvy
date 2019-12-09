@@ -3,11 +3,11 @@
 you will need to update the url for facebook login when deploying most likely
 
 to do
-    send and recieve to/from multiple numbers
     add sirvy function
     crud for sirvys
     data visualization
     style and graphics, of course
+    finish readme
         stretch
             edit numbers
             organize groups
