@@ -14,9 +14,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT
 
-io.on('connect', function(socket){
-    console.log('connecting to socket')
-})
+io.on('connect', () => console.log('connected to socket'))
 
 const textCache = []
 
@@ -40,4 +38,4 @@ app.post('/sms', (req,res) => {
     io.emit('sms', {data: textCache})
 })
 
-server.listen(PORT, () => { console.log(`Running on ${PORT}`)})
+server.listen(PORT, () => console.log(`Running on ${PORT}`))
