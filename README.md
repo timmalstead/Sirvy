@@ -6,9 +6,12 @@ to do
     data visualization
     style and graphics, of course
     finish readme
+    have mike help you set your database permissions
         stretch
+            pair numbers and users in data viz
             edit numbers
             edit sirvys
+            figure out how to deal wth extra/early/late texts
             organize groups
             drag and drop
             pdf graphic and email send

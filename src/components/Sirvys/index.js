@@ -3,6 +3,7 @@ import SocketIOClient from 'socket.io-client'
 import {database} from '../../firebase/firebase'
 
 import DisplayNums from '../DisplayNums'
+import GraphDisplay from '../GraphDisplay'
 
 class Sirvys extends Component {
 
@@ -15,7 +16,8 @@ class Sirvys extends Component {
     returnedTexts : [],
     optionA : '',
     optionB : '',
-    savedSirvys : []
+    savedSirvys : [],
+    sirvyToRender : undefined
   }
 
   populateBodyOfText = () => this.setState({
@@ -67,9 +69,10 @@ class Sirvys extends Component {
     const sent = await sending.json()
     console.log(sent)
     this.setState({
+      returnedTexts : [],
+      sirvyToRender : message.body.replace(/\n*/g,'').replace(/.*:/,'').replace(/Pl.*/,'').replace(/ +(?= )/g,'').trim(),
       optionA : '',
       optionB : '',
-      returnedTexts : []
     })
   } 
 
@@ -113,9 +116,11 @@ class Sirvys extends Component {
 
     const socket =SocketIOClient(process.env.REACT_APP_URL)
 
-    socket.on('sms', data =>  this.setState({
-      returnedTexts : data.data
-    }))
+    socket.on('sms', data => {
+      this.setState({
+        returnedTexts : data.data
+      })
+    })
 
     database.ref(`numbers/${this.props.currentUser.uid}`).on('value', snapshot => {
         const data = snapshot.val()
@@ -151,7 +156,7 @@ class Sirvys extends Component {
   }
 
   render () {
-    const {currentNumToText, returnedTexts, numbersToText, nameToText, error, optionA, optionB, savedSirvys} = this.state
+    const {currentNumToText, returnedTexts, numbersToText, nameToText, error, optionA, optionB, savedSirvys, sirvyToRender} = this.state
     const {currentUser} = this.props
     return (
       <div>
@@ -183,7 +188,7 @@ class Sirvys extends Component {
         {savedSirvys ?
           savedSirvys.map( (sirvy, i) => {
             return <form name='sendSaved' onSubmit={e => this.sendSirvy(e, i)} key={sirvy.key}>
-                      <span>{sirvy.sirvy.replace(/\n*/g,'').replace(/.*:/,'').replace(/Pl.*/,'')}</span>
+                      <span>{sirvy.sirvy.replace(/\n*/g,'').replace(/.*:/,'').replace(/Pl.*/,'').replace(/ +(?= )/g,'').trim()}</span>
                       <button type='button' onClick={() => this.deleteSirvy(sirvy.key)}>Delete Sirvy</button>
                       <button type='submit'>Send Saved Sirvy</button>
                    </form>
@@ -192,7 +197,7 @@ class Sirvys extends Component {
           null
         }
         {returnedTexts.length >= numbersToText.length && returnedTexts.length ? 
-          <p>data</p>
+          <GraphDisplay sirvyToRender={sirvyToRender}/>
         : 
           null
         }
