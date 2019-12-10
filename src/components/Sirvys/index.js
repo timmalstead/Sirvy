@@ -15,12 +15,12 @@ class Sirvys extends Component {
     returnedTexts : [],
     optionA : '',
     optionB : '',
-    savedSirvys : [],
+    savedSirvys : []
   }
 
   populateBodyOfText = () => this.setState({
     textBody : 
-    `Hello *MESSAGE RECIPIENT*,
+    `Hello MESSAGE RECIPIENT
     ${this.props.currentUser.username} would like to ask you a question:
 
     Do you prefer
@@ -32,7 +32,7 @@ class Sirvys extends Component {
     b) ${this.state.optionB}?
 
     Please reply ONLY with a lowercase a or b.
-    Sent from Sirvy: Beautiful SMS Surveys`
+    Sent from Sirvy-Beautiful SMS Surveys`
   })
   
   onChange = e => {
@@ -43,7 +43,6 @@ class Sirvys extends Component {
       }
     })
   }
-
   
   sendSirvy = async (e, i) => {
     e.preventDefault()
@@ -67,20 +66,12 @@ class Sirvys extends Component {
     
     const sent = await sending.json()
     console.log(sent)
-    // this.saveSirvy()
     this.setState({
       optionA : '',
       optionB : '',
+      returnedTexts : []
     })
-  }
-
-  // prepSavedSirvy = (e, i) => {
-  //   e.preventDefault()
-  //   this.setState({textBody : this.state.savedSirvys[i].sirvy})
-  //   this.sendSirvy()
-  // }
-
-  // sendSavedSirvy = () 
+  } 
 
   saveSirvy = () => {
     database.ref(`sirvys/${this.props.currentUser.uid}`).push(this.state.textBody)
@@ -128,7 +119,9 @@ class Sirvys extends Component {
 
     database.ref(`numbers/${this.props.currentUser.uid}`).on('value', snapshot => {
         const data = snapshot.val()
-        delete data.initialize
+        if (data.initialize) {
+          delete data.initialize
+        }
         const helperArray = []
         for (const num in data) {
           helperArray.push(data[num])
@@ -142,7 +135,9 @@ class Sirvys extends Component {
     
     database.ref(`sirvys/${this.props.currentUser.uid}`).on('value', snapshot => {
       const data = snapshot.val()
-      delete data.initialize
+      if (data.initialize) {
+        delete data.initialize
+      }
       const helperArray = []
       for (const sirvy in data) {
         helperArray.push({sirvy : data[sirvy]})
@@ -162,16 +157,15 @@ class Sirvys extends Component {
       <div>
         <form onSubmit={this.sendSirvy}>
           <p>Your Sirvy will look like this:</p>
-          <p>
-            Hello *MESSAGE RECIPIENT*, {currentUser.username} would like to ask you a question: do you prefer
-          </p>
+          <p>Hello MESSAGE RECIPIENT</p>
+          <p>{currentUser.username} would like to ask you a question: do you prefer</p>
           <span> a)</span>
           <input type='text' name='optionA' value={optionA} placeholder="First Option Here" onChange={this.onChange}/>
           <span> or b)</span>
           <input type='text' name='optionB' value={optionB} placeholder="Second Option Here" onChange={this.onChange}/>
           <span>?</span>
           <p>Please reply ONLY with a lowercase a or b.</p>
-          <p>Sent from Sirvy: Beautiful SMS Surveys</p>
+          <p>Sent from Sirvy-Beautiful SMS Surveys</p>
           <button type='submit'>Send Sirvy</button>
           <button type='button' onClick={this.saveSirvy}>Save Sirvy</button>
         </form>
@@ -180,21 +174,26 @@ class Sirvys extends Component {
           <input type='text' name='currentNumToText' value={currentNumToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
           <button type='submit'>Add Sirvy Recipient</button>
         </form>
-        {returnedTexts ? 
+        {/* {returnedTexts ? 
           returnedTexts.map( text => <p>{text.returningText}</p> )
         : 
-          null}
+          null} */}
         {error ? <p>{error}</p> : null}
         <DisplayNums numbersToText={numbersToText} deleteNumber={this.deleteNumber}/>
         {savedSirvys ?
           savedSirvys.map( (sirvy, i) => {
             return <form name='sendSaved' onSubmit={e => this.sendSirvy(e, i)} key={sirvy.key}>
-                      <span>{sirvy.sirvy}</span>
+                      <span>{sirvy.sirvy.replace(/\n*/g,'').replace(/.*:/,'').replace(/Pl.*/,'')}</span>
                       <button type='button' onClick={() => this.deleteSirvy(sirvy.key)}>Delete Sirvy</button>
                       <button type='submit'>Send Saved Sirvy</button>
                    </form>
           })
         :
+          null
+        }
+        {returnedTexts.length >= numbersToText.length && returnedTexts.length ? 
+          <p>data</p>
+        : 
           null
         }
       </div>

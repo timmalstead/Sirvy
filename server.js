@@ -22,7 +22,7 @@ app.post('/send', (req,res) => {
     console.log(req.body)
     textCache.length = 0
     req.body.to.forEach( (sendNumber,i) => {
-            const messageWithUser = req.body.body.replace('*MESSAGE RECIPIENT*', req.body.names[i])
+            const messageWithUser = req.body.body.replace('MESSAGE RECIPIENT', req.body.names[i])
             client.messages.create({
                 body : messageWithUser,
                 from : process.env.TWILIO_FROM_NUMBER,
@@ -34,7 +34,6 @@ app.post('/send', (req,res) => {
 })
 
 app.post('/sms', (req,res) => {
-    console.log(req.body.Body)
     const returnedText = {returningNumber : req.body.From, returningText : req.body.Body}
     textCache.push(returnedText)
     io.emit('sms', {data: textCache})
