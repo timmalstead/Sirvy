@@ -17,30 +17,6 @@ class App extends Component {
     currentUser : null,
   }
 
-  // logInUser = async (currentUser) => {
-  //   await database.ref('/users/').once('value', snapshot => {
-  //     const usersArray = []
-  //     // snapshot.forEach(childShapShot => usersArray.push({dbId : childShapShot.key ,...childShapShot.val()}))
-  //     snapshot.forEach(childShapShot => usersArray.push({...childShapShot.exportVal()}))
-  //     console.log(usersArray)
-  //   })
-  // }
-  //   // const findUser = usersArray.indexOf(Object.values().includes(currentUser.uid))
-  //   // const findUser = usersArray.filter(userToFind => userToFind.uid === currentUser.uid)
-  //   // usersArray.forEach(obj => console.log(obj))
-  //   // console.log(findUser, usersArray)
-
-  // signUpUser = async currentUser => {
-  //   // const userToInsert = []
-  //   // await database.ref('users').push(currentUser).then(pushedUser => userToInsert.push(pushedUser.key))
-  //   let userToInsert = undefined
-  //   await database.ref('users').push(currentUser).then(pushedUser => userToInsert= pushedUser.key)
-  //   this.setState({
-  //     isLoggedIn : true,
-  //     currentUser : {dbId : userToInsert, ...currentUser}
-  //   })
-  // }
-
    logInUser = async (currentUser) => {
     await database.ref(`users/${currentUser.uid}`).once('value', snapshot => {
       const userToLogin = snapshot.val()

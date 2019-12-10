@@ -1,6 +1,8 @@
 ### `Sirvy`
 
 you will need to update the url for facebook login when deploying most likely
+also, check your local variables when you deploy AND check your package.json, for the command where you specify a port
+
 
 to do
     tooltip to show users or list votes below chart

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {PieChart, Pie, Cell, Tooltip} from 'recharts'
+import {PieChart, Pie, Cell} from 'recharts'
 
 class GraphDisplay extends Component {
     state = {
@@ -19,8 +19,6 @@ class GraphDisplay extends Component {
             this.setState({
                 optionA,
                 optionB
-            }, () => {
-                
             })
         }
 
@@ -30,10 +28,8 @@ class GraphDisplay extends Component {
         this.props.returnedTexts.forEach( count => 
             count.returningText === 'a' ? aCounter++ : bCounter++
         ) 
-
-        const {optionA, optionB} = this.state
             
-        const data = [{name : 'optionA', value: 100 * aCounter}, {name : optionB, value: 100 * bCounter}]
+        const data = [{value: 100 * aCounter}, {value: 100 * bCounter}]
         const colors = ['#0088fe', '#dbcc66']
 
         const radian = Math.PI / 180
@@ -77,7 +73,6 @@ class GraphDisplay extends Component {
                     data.map((entry, index) => <Cell fill={colors[index % colors.length]}/>)
                 }
                 </Pie>
-            <Tooltip/>
             </PieChart>
             <p style={blueText}>{optionA}</p>
             <p style={yellowText}>{optionB}</p>
