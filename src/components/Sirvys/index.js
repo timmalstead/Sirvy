@@ -197,7 +197,7 @@ class Sirvys extends Component {
           null
         }
         {returnedTexts.length >= numbersToText.length && returnedTexts.length ? 
-          <GraphDisplay sirvyToRender={sirvyToRender}/>
+          <GraphDisplay sirvyToRender={sirvyToRender} returnedTexts={returnedTexts}/>
         : 
           null
         }
