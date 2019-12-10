@@ -3,7 +3,7 @@
 you will need to update the url for facebook login when deploying most likely
 
 to do
-    data visualization
+    tooltip to show users or list votes below chart
     style and graphics, of course
     finish readme
     have mike help you set your database permissions
