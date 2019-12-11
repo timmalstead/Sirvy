@@ -5,6 +5,8 @@ import {database} from '../../firebase/firebase'
 import DisplayNums from '../DisplayNums'
 import GraphDisplay from '../GraphDisplay'
 
+import {SirvyStyle} from './style'
+
 class Sirvys extends Component {
 
   state = {
@@ -159,7 +161,7 @@ class Sirvys extends Component {
     const {currentNumToText, returnedTexts, numbersToText, nameToText, error, optionA, optionB, savedSirvys, sirvyToRender} = this.state
     const {currentUser} = this.props
     return (
-      <div>
+      <SirvyStyle>
         <form onSubmit={this.sendSirvy}>
           <p>Your Sirvy will look like this:</p>
           <p>Hello MESSAGE RECIPIENT</p>
@@ -201,7 +203,7 @@ class Sirvys extends Component {
         : 
           null
         }
-      </div>
+      </SirvyStyle>
     )
   }
 }

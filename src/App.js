@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom'
 
 import './App.css';
+import {AppStyle} from './style'
 
 import Navbar from './components/Navbar'
+import SplashPage from './components/SplashPage'
 import Profile from './components/Profile'
 import Sirvys from './components/Sirvys'
 import Footer from './components/Footer'
@@ -75,7 +77,7 @@ class App extends Component {
   render () {
     const {isLoggedIn, currentUser} = this.state
     return (
-      <main>
+      <AppStyle>
         <Navbar 
           isLoggedIn={isLoggedIn} 
           currentUser={currentUser} 
@@ -84,6 +86,12 @@ class App extends Component {
           logOutUser={this.logOutUser}
         />
         <Switch>
+          <Route 
+            exact path ='/'
+            render={() =>
+            <SplashPage 
+            />}
+          />
           {isLoggedIn ? 
           <Route 
             exact path = '/profile' 
@@ -96,7 +104,7 @@ class App extends Component {
               logOutUser={this.logOutUser}
             />}
           />
-          : null}
+          : <SplashPage />}
           {isLoggedIn ? 
           <Route 
             exact path = '/sirvys' 
@@ -106,10 +114,10 @@ class App extends Component {
               currentUser={currentUser}
             />}
           /> 
-          : null}
+          : <SplashPage/>}
         </Switch>
         <Footer />
-      </main>
+      </AppStyle>
     )
   }
 }

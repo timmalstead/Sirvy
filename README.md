@@ -2,10 +2,20 @@
 
 you will need to update the url for facebook login when deploying most likely
 also, check your local variables when you deploy AND check your package.json, for the command where you specify a port
+also also, check how to you need to reconfigure your webhook
 
+to style
+    make saved Sirvys its own component
+    GraphDisplay
+    Navbar
+    Profile
+    SignIn
+    SignUp
+    Sirvys
+    SplashPage
+    Fonts and Colors again
 
 to do
-    tooltip to show users or list votes below chart
     style and graphics, of course
     finish readme
     have mike help you set your database permissions
