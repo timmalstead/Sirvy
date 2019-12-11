@@ -141,26 +141,9 @@ class Navbar extends Component {
                             signingUp={signingUp}
                         />
                     }
-                    {/* <button 
-                        onClick={() => this.setState({ 
-                            signingUp : !signingUp,
-                            email : '',
-                            password : '',
-                            confirmPassword : ''})}>
-                         {signingUp ? 'Sign In' : 'Sign Up'}
-                    </button> */}
                     {error && <span>{error.message}</span>}
                 </div>
                 }
-                {/* {currentUser ? 
-                    <span className='user'>Hello {currentUser.username}</span> 
-                    : null
-                } */}
-                {/* {this.props.isLoggedIn ? 
-                    <button type='button' onClick={this.signOut}>Sign Out</button> 
-                : 
-                    null
-                } */}
             </NavStyle>
         )
     }

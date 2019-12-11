@@ -7,8 +7,6 @@ const SirvyStyle = styled.div`
     align-items : center;
 `
 
-// remember to add column media query and 950px
-
 const SavingStyles = styled.div`
     display : flex;
     justify-content : space-between;
