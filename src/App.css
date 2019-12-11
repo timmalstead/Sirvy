@@ -35,19 +35,20 @@ button, input {
 
 button {
   border : none;
-  background-color : #00000000;
+  background-color: #016fb9;
+  color : white;
   cursor: pointer;
   margin : .2em;
-  border-radius : 15%;
+  border-radius : 10%;
 }
 
 button:hover {
-  background-color: #016fb9;
-  color : white;
+  background-color: #151515;
+  color : #EC4E20;
 }
 
 input {
-  border-radius : 20%;
+  /* border-radius : 20%; */
 }
 
 input:focus {
@@ -64,11 +65,11 @@ input:focus {
 
   70% {
       transform : scale(1);
-      box-shadow : 0 0 .5em .25em #15151500;
+      box-shadow : 0 0 0 .25em #15151500;
   }
 
   100% {
       transform : scale(0.95);
-      box-shadow : 0 0 .25em 0 #15151500;
+      box-shadow : 0 0 .1em 0 #15151500;
   }
 }

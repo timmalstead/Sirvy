@@ -47,7 +47,7 @@ const UlStyle = styled.ul`
 
     @keyframes pulse2s {
   0% {
-      transform : scale(0.95);
+      transform : scale(0.98);
   }
 
   70% {
@@ -55,7 +55,7 @@ const UlStyle = styled.ul`
   }
 
   100% {
-      transform : scale(0.95);
+      transform : scale(0.98);
   }
 }
 `
