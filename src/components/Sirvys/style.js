@@ -2,6 +2,9 @@ import styled from 'styled-components'
 
 const SirvyStyle = styled.div`
     width : 100%;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
 `
 
 // remember to add column media query and 950px

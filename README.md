@@ -5,13 +5,9 @@ also, check your local variables when you deploy AND check your package.json, fo
 also also, check how to you need to reconfigure your webhook
 
 to style
-    GraphDisplay
     Navbar
-    Profile
     SignIn
     SignUp
-    Sirvys
-    SplashPage
     Fonts and Colors again
 
 to do

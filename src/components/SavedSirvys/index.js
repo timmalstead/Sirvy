@@ -18,8 +18,6 @@ const SavedSirvys = props => {
                   </span>
                </form>
       })
-
-      console.log(displaySavedSirvys)
     return(
         <div>
             <h3>Saved Sirvys</h3>

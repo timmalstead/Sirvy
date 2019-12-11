@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {PieChart, Pie, Cell} from 'recharts'
 
-import {GraphStyle} from './style'
+import {GraphStyle, TitleStyle} from './style'
 
 class GraphDisplay extends Component {
     state = {
@@ -58,14 +58,12 @@ class GraphDisplay extends Component {
 
     render () {
     const {optionA, optionB, data, colors, renderCustomizedLabel} = this.state
-    const blueText = {'fontSize' : '3em', 'color' : '#0088fe'}
-    const yellowText = {'fontSize' : '3em', 'color' : '#dbcc66'}
         return(
         <GraphStyle>
-            <PieChart width={1440} height={700} onMouseEnter={this.onPieEnter}>
+            <PieChart width={700}  height={700} onMouseEnter={this.onPieEnter}>
                 <Pie
                 data={data}
-                cx={720} 
+                cx={350} 
                 cy={350} 
                 labelLine={false}
                 label={renderCustomizedLabel}
@@ -76,8 +74,10 @@ class GraphDisplay extends Component {
                 }
                 </Pie>
             </PieChart>
-            <p style={blueText}>{optionA}</p>
-            <p style={yellowText}>{optionB}</p>
+            <TitleStyle>
+                <p className={'blue-text'}>{optionA}</p>
+                <p className={'yellow-text'}>{optionB}</p>
+            </TitleStyle>
         </GraphStyle>
         )
     }

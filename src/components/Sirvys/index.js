@@ -166,7 +166,7 @@ class Sirvys extends Component {
           <GraphDisplay sirvyToRender={sirvyToRender} returnedTexts={returnedTexts} deleteSirvy={this.deleteSirvy} sendSirvy={this.sendSirvy}/>
         : 
         <form onSubmit={this.sendSirvy}>
-          <p>Your Sirvy will look like this:</p>
+          <h2>Your Sirvy will look like this:</h2>
           <p>Hello MESSAGE RECIPIENT</p>
           <p>{currentUser.username} would like to ask you a question: do you prefer</p>
           <span> a)</span>

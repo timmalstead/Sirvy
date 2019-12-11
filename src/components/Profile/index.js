@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {passwordReset, signOut} from '../../firebase/firebase'
+import {ProfileStyle} from './style'
 
 class Profile extends Component {
 
@@ -29,8 +30,8 @@ class Profile extends Component {
     const {username, email, signInMethod} = this.props.currentUser
     const {tempUserName} = this.state
     return (
-      <div>
-        <p>{signInMethod}</p>
+      <ProfileStyle>
+        <h3>User Profile</h3>
         <p>{email}</p>
         {signInMethod === 'signIn' ?
           <button type='button' onClick={this.passwordResetEmail}>Send Password Reset Email and Logout</button>
@@ -43,7 +44,7 @@ class Profile extends Component {
           <button type='submit'>Change Username</button>
           <button type='button' onClick={this.props.deleteUser}>Delete User</button>
         </form>
-      </div>
+      </ProfileStyle>
     )
   }
 }

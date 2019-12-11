@@ -47,6 +47,7 @@ button:hover {
 
 input {
   border : .1em solid #6c6c6c;
+  margin : 0 .25em;
 }
 
 input:focus {

@@ -74,6 +74,14 @@ class Navbar extends Component {
         this.props.history.push('/')
     }
 
+    changeSignInAndSignup = () => {
+        this.setState({ 
+            signingUp : !this.state.signingUp,
+            email : '',
+            password : '',
+            confirmPassword : ''})
+    }
+
     render () {
         const {error, email, password, confirmPassword, signingUp} = this.state
         const {currentUser} = this.props
@@ -82,14 +90,26 @@ class Navbar extends Component {
             <NavStyle>
                 {this.props.isLoggedIn ? 
                     <nav>
-                        <NavLink exact to = '/'>Home</NavLink>
-                        <NavLink exact to = '/profile'>Profile</NavLink>
-                        <NavLink exact to = '/sirvys'>Sirvys</NavLink>
+                        <div>
+                            <NavLink exact to = '/'>Home</NavLink>
+                            <NavLink exact to = '/profile'>Profile</NavLink>
+                            <NavLink exact to = '/sirvys'>Sirvys</NavLink>
+                            {this.props.isLoggedIn ? 
+                                <button className='logOut' type='button' onClick={this.signOut}>Sign Out</button> 
+                            : 
+                                null
+                            }
+                        </div>
+                        {currentUser ? 
+                            <span className='user'>Hello {currentUser.username}</span> 
+                        : 
+                            null
+                        }
                     </nav>
                 : null}
                 {this.props.isLoggedIn ? 
                 null : 
-                <div>
+                <div className='bar'>
                     <form onSubmit={this.thirdPartySignIn}>
                         <button type='submit' onMouseEnter={() => this.setState({signInMethod : 'google'})}>Login with Google</button>
                         <button type='submit' onMouseEnter={() => this.setState({signInMethod : 'facebook'})}>Login with Facebook</button>
@@ -104,41 +124,43 @@ class Navbar extends Component {
                             setSignInOrSignUp={this.setSignInOrSignUp}
                             signInOrSignUp={this.signInOrSignUp}
                             error={this.state.error}
+                            changeSignInAndSignup={this.changeSignInAndSignup}
+                            signingUp={signingUp}
                         />
                     :
-                        <div>
-                            <SignIn 
-                                email={email} 
-                                password={password} 
-                                confirmPassword={confirmPassword} 
-                                isInvalid={isInvalid}
-                                onChange={this.onChange}
-                                setSignInOrSignUp={this.setSignInOrSignUp}
-                                signInOrSignUp={this.signInOrSignUp}
-                                error={this.state.error}
-                            />
-                        </div>
+                        <SignIn 
+                            email={email} 
+                            password={password} 
+                            confirmPassword={confirmPassword} 
+                            isInvalid={isInvalid}
+                            onChange={this.onChange}
+                            setSignInOrSignUp={this.setSignInOrSignUp}
+                            signInOrSignUp={this.signInOrSignUp}
+                            error={this.state.error}
+                            changeSignInAndSignup={this.changeSignInAndSignup}
+                            signingUp={signingUp}
+                        />
                     }
-                    <button 
+                    {/* <button 
                         onClick={() => this.setState({ 
                             signingUp : !signingUp,
                             email : '',
                             password : '',
                             confirmPassword : ''})}>
                          {signingUp ? 'Sign In' : 'Sign Up'}
-                    </button>
+                    </button> */}
                     {error && <span>{error.message}</span>}
                 </div>
                 }
-                {this.props.isLoggedIn ? 
+                {/* {currentUser ? 
+                    <span className='user'>Hello {currentUser.username}</span> 
+                    : null
+                } */}
+                {/* {this.props.isLoggedIn ? 
                     <button type='button' onClick={this.signOut}>Sign Out</button> 
                 : 
                     null
-                }
-                {currentUser ? 
-                    <h3>Hello {currentUser.username}</h3> 
-                    : null
-                }
+                } */}
             </NavStyle>
         )
     }
