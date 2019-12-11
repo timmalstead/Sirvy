@@ -4,8 +4,9 @@ import {database} from '../../firebase/firebase'
 
 import DisplayNums from '../DisplayNums'
 import GraphDisplay from '../GraphDisplay'
+import SavedSirvys from '../SavedSirvys'
 
-import {SirvyStyle} from './style'
+import {SirvyStyle, SavingStyles} from './style'
 
 class Sirvys extends Component {
 
@@ -48,8 +49,7 @@ class Sirvys extends Component {
     })
   }
   
-  sendSirvy = async (e, i) => {
-    e.preventDefault()
+  sendSirvy = async (e,i) => {
 
     const numbers = this.state.numbersToText.map(recipientNum => `1${recipientNum.number}`)
     const names = this.state.numbersToText.map(names => names.name)
@@ -162,6 +162,9 @@ class Sirvys extends Component {
     const {currentUser} = this.props
     return (
       <SirvyStyle>
+        {returnedTexts.length >= numbersToText.length && returnedTexts.length ? 
+          <GraphDisplay sirvyToRender={sirvyToRender} returnedTexts={returnedTexts} deleteSirvy={this.deleteSirvy} sendSirvy={this.sendSirvy}/>
+        : 
         <form onSubmit={this.sendSirvy}>
           <p>Your Sirvy will look like this:</p>
           <p>Hello MESSAGE RECIPIENT</p>
@@ -176,33 +179,21 @@ class Sirvys extends Component {
           <button type='submit'>Send Sirvy</button>
           <button type='button' onClick={this.saveSirvy}>Save Sirvy</button>
         </form>
+        }
         <form onSubmit={this.addSirvyRecipient}>
           <input type='text' name='nameToText' value={nameToText} placeholder="Add Sirvy Recipient" onChange={this.onChange} />
-          <input type='text' name='currentNumToText' value={currentNumToText} placeholder="Enter 10 Digit Phone Number" onChange={this.onChange}/>
+          <input type='text' name='currentNumToText' value={currentNumToText} placeholder="10 Digit #" onChange={this.onChange}/>
           <button type='submit'>Add Sirvy Recipient</button>
         </form>
-        {/* {returnedTexts ? 
-          returnedTexts.map( text => <p>{text.returningText}</p> )
-        : 
-          null} */}
         {error ? <p>{error}</p> : null}
-        <DisplayNums numbersToText={numbersToText} deleteNumber={this.deleteNumber}/>
-        {savedSirvys ?
-          savedSirvys.map( (sirvy, i) => {
-            return <form name='sendSaved' onSubmit={e => this.sendSirvy(e, i)} key={sirvy.key}>
-                      <span>{sirvy.sirvy.replace(/\n*/g,'').replace(/.*:/,'').replace(/Pl.*/,'').replace(/ +(?= )/g,'').trim()}</span>
-                      <button type='button' onClick={() => this.deleteSirvy(sirvy.key)}>Delete Sirvy</button>
-                      <button type='submit'>Send Saved Sirvy</button>
-                   </form>
-          })
-        :
-          null
-        }
-        {returnedTexts.length >= numbersToText.length && returnedTexts.length ? 
-          <GraphDisplay sirvyToRender={sirvyToRender} returnedTexts={returnedTexts}/>
-        : 
-          null
-        }
+        <SavingStyles>
+          <DisplayNums numbersToText={numbersToText} deleteNumber={this.deleteNumber}/>
+          {savedSirvys ?
+            <SavedSirvys savedSirvys={savedSirvys} sendSirvy={this.sendSirvy} deleteSirvy={this.deleteSirvy}/>
+          :
+            null
+          }
+        </SavingStyles>
       </SirvyStyle>
     )
   }

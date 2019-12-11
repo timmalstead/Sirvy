@@ -1,5 +1,5 @@
 import React from 'react'
-import {UlStyle} from './style'
+import {UlStyle,    HolderStyle} from './style'
 
 const DisplayNums = props => {
 
@@ -15,9 +15,12 @@ const DisplayNums = props => {
     )
 
     return(
-        <UlStyle>
-            {nums}
-        </UlStyle>
+        <HolderStyle>
+            <h3>Recipients</h3>
+            <UlStyle>
+                {nums}
+            </UlStyle>
+        </HolderStyle>
     )
 }
 

@@ -5,7 +5,6 @@ also, check your local variables when you deploy AND check your package.json, fo
 also also, check how to you need to reconfigure your webhook
 
 to style
-    make saved Sirvys its own component
     GraphDisplay
     Navbar
     Profile

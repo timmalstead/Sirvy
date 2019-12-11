@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {PieChart, Pie, Cell} from 'recharts'
 
+import {GraphStyle} from './style'
+
 class GraphDisplay extends Component {
     state = {
         optionA : '',
@@ -59,7 +61,7 @@ class GraphDisplay extends Component {
     const blueText = {'fontSize' : '3em', 'color' : '#0088fe'}
     const yellowText = {'fontSize' : '3em', 'color' : '#dbcc66'}
         return(
-        <div>
+        <GraphStyle>
             <PieChart width={1440} height={700} onMouseEnter={this.onPieEnter}>
                 <Pie
                 data={data}
@@ -76,7 +78,7 @@ class GraphDisplay extends Component {
             </PieChart>
             <p style={blueText}>{optionA}</p>
             <p style={yellowText}>{optionB}</p>
-        </div>
+        </GraphStyle>
         )
     }
 }

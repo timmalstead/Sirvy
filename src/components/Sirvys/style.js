@@ -6,4 +6,14 @@ const SirvyStyle = styled.div`
 
 // remember to add column media query and 950px
 
-export {SirvyStyle}
+const SavingStyles = styled.div`
+    display : flex;
+    justify-content : space-between;
+
+    @media (max-width: 950px) {
+        
+        flex-direction : column;
+    
+    }
+`
+export {SirvyStyle, SavingStyles}
