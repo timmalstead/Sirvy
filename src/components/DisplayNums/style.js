@@ -3,8 +3,8 @@ import styled from 'styled-components'
 const UlStyle = styled.ul`
     list-style-type : none;
     width : 49vw;
-    background-color : #101010;
-    border-radius : 10%;
+    background-color : #2d2d2d;
+    color : #6c6c6c;
     padding-inline-start : 0;
     padding : .5em 0;
 
@@ -14,6 +14,7 @@ const UlStyle = styled.ul`
 
     li {
         display : flex;
+        flex-wrap : wrap;
         justify-content : space-between;
         padding : 0 1em;
     }
@@ -24,24 +25,7 @@ const UlStyle = styled.ul`
 
     @media (max-width: 950px) {
 
-        width : 98vw;
-
-/* 
-        li {
-            flex-direction : column;
-            justify-content : space-evenly;
-            margin : .5em 0;
-        }
-
-        .holder {
-            display : flex;
-            flex-direction : column;
-            margin : .5em 0;
-        }
-
-        .name-and-number {
-            text-align : center;
-        } */
+        width : 96vw;
 
     }
 

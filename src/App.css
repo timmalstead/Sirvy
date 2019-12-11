@@ -10,7 +10,6 @@ html {
 body {
   background-color : #151515;
   color : #FF9505;
-  margin : 0;
   font-size: 1.25em;
   min-height : 100vh;
   width : 98vw;
@@ -39,7 +38,6 @@ button {
   color : white;
   cursor: pointer;
   margin : .2em;
-  border-radius : 10%;
 }
 
 button:hover {
@@ -48,13 +46,23 @@ button:hover {
 }
 
 input {
-  /* border-radius : 20%; */
+  border : .1em solid #6c6c6c;
 }
 
 input:focus {
   box-shadow : 0 0 0 0 #883232;
   transform : scale(1);
   animation : pulse 2s infinite;
+}
+
+::placeholder {
+  color : #6c6c6c;
+}
+
+@media (max-width: 950px) {
+  body {
+    width : 94vw;
+  }
 }
 
 @keyframes pulse {
