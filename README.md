@@ -40,6 +40,7 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 * JavaScript
 * Node JS
 * React with Styled Components
+* JSX
 * Express
 * Twilio API and NPM packages
 * Recharts NPM package
