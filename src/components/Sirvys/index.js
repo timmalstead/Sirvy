@@ -51,6 +51,8 @@ class Sirvys extends Component {
   
   sendSirvy = async (e,i) => {
 
+    //fix on page send button
+
     const numbers = this.state.numbersToText.map(recipientNum => `1${recipientNum.number}`)
     const names = this.state.numbersToText.map(names => names.name)
     
@@ -165,7 +167,7 @@ class Sirvys extends Component {
         {returnedTexts.length >= numbersToText.length && returnedTexts.length ? 
           <GraphDisplay sirvyToRender={sirvyToRender} returnedTexts={returnedTexts} deleteSirvy={this.deleteSirvy} sendSirvy={this.sendSirvy}/>
         : 
-        <form onSubmit={this.sendSirvy}>
+        <form name='onPageSubmit' onSubmit={this.sendSirvy}>
           <h2>Your Sirvy will look like this:</h2>
           <p>Hello MESSAGE RECIPIENT</p>
           <p>{currentUser.username} would like to ask you a question: do you prefer</p>
@@ -176,7 +178,7 @@ class Sirvys extends Component {
           <span>?</span>
           <p>Please reply ONLY with a lowercase a or b.</p>
           <p>Sent from Sirvy-Beautiful SMS Surveys</p>
-          <button type='submit'>Send Sirvy</button>
+          {/* <button type='submit'>Send Sirvy</button> */}
           <button type='button' onClick={this.saveSirvy}>Save Sirvy</button>
         </form>
         }

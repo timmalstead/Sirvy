@@ -1,44 +1,58 @@
-### `Sirvy`
 
-you will need to update the url for facebook login when deploying most likely
-also, check your local variables when you deploy AND check your package.json, for the command where you specify a port
-also also, check how to you need to reconfigure your webhook
+## Sirvy
 
-to style
-    Navbar
-    SignIn
-    SignUp
-    Fonts and Colors again
+Link to use ===>
 
-to do
-    style and graphics, of course
-    finish readme
-    have mike help you set your database permissions
-        stretch
-            pair numbers and users in data viz
-            edit numbers
-            edit sirvys
-            figure out how to deal wth extra/early/late texts
-            organize groups
-            drag and drop
-            pdf graphic and email send
+###### Version 1.0
 
-user stories
+Designed and developed by Timothy Malstead
+`timmalstead@gmail.com`
 
-a user can log in, using third party verification or their own email
+#### Simple SMS Survyes
 
-a user can update their profile
+Sirvy allows users to counduct surveys over SMS and render the collected data in charts, all while using a simple, clean and easy to naigate UX.
 
-a user can store numbers
+#### User Stories
 
-a user can send surveys and recieve info back on them
+1) Users can log in, using third party verification or their own email.
 
-a user can save the data of those surveys, visualize it and make pdfs of it
+2) Users can update their profile.
 
-Sirvy is the best
+3) A user can store phone numbers and surveys, which are not visible to any other users
 
-i'm thinking some simple crud stuff stored locally, auth handled by firebase. maybe storage on firebase? though i don't know what i'd need to store.
+4) Users can compose and send surveys and recieve the information back.
 
-don't know whether i'm gonna do the texting on the front or back end. probably wouldn't be too bad on the back end. pass req.body back for the number and message fields. we'll see.
+5) A user can then visualize the data of those surveys.
 
-then get the sent back data and some data visualization.
+#### Technologies Used
+
+* HTML
+* CSS3
+* JavaScript
+* Node JS
+* React with Styled Components
+* Express
+* Twilio API and NPM packages
+* Recharts NPM package
+* Google Firebase
+
+#### Known Issues
+
+None reported yet
+
+#### Next Steps
+
+* Add more charts and methods of data visualization
+* Further refine site styling and graphics
+* Add more CRUD functions for users and data
+* Display users answers to questions by name as well as percentages
+* Add drag and drop functionality to components
+* Add option to export and send graphics
+
+#### Special Thanks
+
+Thanks to all my fellow students in SEI CC 5 (**Cranberry Gobblers 4 Lyfe!**) for all the encouragement, opinions and laughs.
+
+Thanks to my instructors Michael Christenson, Michael Siller, Demarkus Matthews and James Haff for all the help and encouragement, working with me on websockets and for talking me down from a few database related freakouts.
+
+Finally, thanks to you for taking the time to read this and to use my site. If you like my work or have a suggestion for how I can improve it, please drop me a line.
