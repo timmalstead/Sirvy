@@ -1,7 +1,7 @@
 const express = require ('express')
 const dotenv = require('dotenv')
 const path = require('path')
-dotenv.config();
+dotenv.config()
 const client = require('twilio')(process.env.TWILIO_SID,process.env.TWILIO_TOKEN)
 const http = require('http')
 const io = require('socket.io')()
