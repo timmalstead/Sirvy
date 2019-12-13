@@ -42,6 +42,7 @@ app.post('/sms', (req,res) => {
     const returnedText = {returningNumber : req.body.From, returningText : returnedBody}
     textCache.push(returnedText)
     io.emit('sms', {data: textCache})
+    res.json({message : "it is working"})
 })
 
 app.get('/*', (req, res) => {
