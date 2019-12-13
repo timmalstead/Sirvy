@@ -71,7 +71,6 @@ class Sirvys extends Component {
     })
     
     const sent = await sending.json()
-    console.log(sent)
     this.setState({
       returnedTexts : [],
       sirvyToRender : message.body.replace(/\n*/g,'').replace(/.*:/,'').replace(/Pl.*/,'').replace(/ +(?= )/g,'').trim(),

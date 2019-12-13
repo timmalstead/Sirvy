@@ -75,7 +75,6 @@ class App extends Component {
   }
 
   render () {
-    console.log(process.env)
     const {isLoggedIn, currentUser} = this.state
     return (
       <AppStyle>

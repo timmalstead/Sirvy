@@ -21,7 +21,6 @@ io.on('connect', () => console.log('connected to socket'))
 const textCache = []
 
 app.post('/send', (req,res) => {
-    console.log(req.body)
     textCache.length = 0
     req.body.to.forEach( (sendNumber,i) => {
             const messageWithUser = req.body.body.replace('MESSAGE RECIPIENT', req.body.names[i])
