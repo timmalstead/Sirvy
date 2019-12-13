@@ -119,6 +119,7 @@ class Sirvys extends Component {
 
     const socket =SocketIOClient(process.env.REACT_APP_URL)
     // const socket =SocketIOClient(process.env.REACT_APP_URL)
+    //switch between production and development socket prn
 
 
     socket.on('sms', data => {
