@@ -117,7 +117,9 @@ class Sirvys extends Component {
   componentDidMount() {
     const {numbersToText, savedSirvys} = this.state
 
-    const socket =SocketIOClient(process.env.REACT_APP_URL)
+    const socket =SocketIOClient(process.env.PRODUCTION_REACT_APP_URL)
+    // const socket =SocketIOClient(process.env.REACT_APP_URL)
+
 
     socket.on('sms', data => {
       this.setState({
