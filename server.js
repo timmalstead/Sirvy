@@ -35,14 +35,14 @@ app.post('/send', (req,res) => {
 })
 
 app.post('/sms', (req,res) => {
-    // let returnedBody = undefined
-    // if (req.body.Body.startsWith('a') || req.body.Body.startsWith('A')) {
-    //     returnedBody = 'a'
-    // } else (returnedBody = 'b')
-    // const returnedText = {returningNumber : req.body.From, returningText : returnedBody}
-    // textCache.push(returnedText)
-    // io.emit('sms', {data: textCache})
-    res.json({message : "it is working"})
+    let returnedBody = undefined
+    if (req.body.Body.startsWith('a') || req.body.Body.startsWith('A')) {
+        returnedBody = 'a'
+    } else (returnedBody = 'b')
+    const returnedText = {returningNumber : req.body.From, returningText : returnedBody}
+    textCache.push(returnedText)
+    io.emit('sms', {data: textCache})
+    // res.json({message : "it is working"})
 })
 
 app.get('/*', (req, res) => {
