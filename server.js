@@ -1,11 +1,13 @@
 const express = require ('express')
 const dotenv = require('dotenv')
+const path = require('path')
 dotenv.config();
 const client = require('twilio')(process.env.TWILIO_SID,process.env.TWILIO_TOKEN)
 const http = require('http')
 const io = require('socket.io')()
 
 const app = express()
+app.use(express.static(path.join(__dirname, 'build')))
 const server = http.Server(app)
 io.attach(server)
 
@@ -41,6 +43,10 @@ app.post('/sms', (req,res) => {
     const returnedText = {returningNumber : req.body.From, returningText : returnedBody}
     textCache.push(returnedText)
     io.emit('sms', {data: textCache})
+})
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 server.listen(PORT, () => console.log(`Running on ${PORT}`))
