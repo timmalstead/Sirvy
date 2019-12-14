@@ -25,7 +25,7 @@ const NavStyle = styled.header`
     .bar {
         display : flex;
         flex-wrap : wrap;
-        justify-content : space-between;
+        justify-content : flex-end;
     }
 
     .active {
