@@ -50,7 +50,6 @@ None reported yet
 
 #### Next Steps
 
-- Display users answers to questions by name as well as percentages
 - Add more charts and methods of data visualization
 - Add more CRUD functions for users and data
 - Add drag and drop functionality to components
