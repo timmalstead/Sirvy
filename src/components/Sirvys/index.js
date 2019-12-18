@@ -5,6 +5,8 @@ import { database } from "../../firebase/firebase"
 import DisplayNums from "../DisplayNums"
 import GraphDisplay from "../GraphDisplay"
 import SavedSirvys from "../SavedSirvys"
+import CurrentNums from "../CurrentNums"
+import CurrentSirvy from "../CurrentSirvy"
 
 import { SirvyStyle, SavingStyles } from "./style"
 
@@ -16,6 +18,7 @@ class Sirvys extends Component {
     nameToText: "",
     numbersToText: [],
     returnedTexts: [],
+    activeNumbers: [],
     optionA: "",
     optionB: "",
     savedSirvys: [],
@@ -123,6 +126,17 @@ class Sirvys extends Component {
 
   deleteSirvy = key => {
     database.ref(`sirvys/${this.props.currentUser.uid}/${key}`).remove()
+  }
+
+  addCurrentNum = index => {
+    const { activeNumbers, numbersToText } = this.state
+    this.setState({
+      activeNumbers: [...activeNumbers, numbersToText[index]]
+    })
+  }
+
+  removeFromCurrentNum = index => {
+    console.log("hitting", index)
   }
 
   componentDidMount() {
@@ -260,13 +274,21 @@ class Sirvys extends Component {
             placeholder="10 Digit #"
             onChange={this.onChange}
           />
-          <button type="submit">Add Sirvy Recipient</button>
+          <button type="submit">Save Sirvy Recipient</button>
         </form>
         {error ? <p>{error}</p> : null}
+        <SavingStyles>
+          <CurrentNums
+            activeNumbers={this.state.activeNumbers}
+            removeFromCurrentNum={this.removeFromCurrentNum}
+          />
+          <CurrentSirvy />
+        </SavingStyles>
         <SavingStyles>
           <DisplayNums
             numbersToText={numbersToText}
             deleteNumber={this.deleteNumber}
+            addCurrentNum={this.addCurrentNum}
           />
           {savedSirvys ? (
             <SavedSirvys

@@ -50,9 +50,9 @@ None reported yet
 
 #### Next Steps
 
-- Add more charts and methods of data visualization
 - Add more CRUD functions for users and data
 - Add drag and drop functionality to components
+- Add more charts and methods of data visualization
 - Further refine site styling and graphics
 - Add option to export and send graphics
 
