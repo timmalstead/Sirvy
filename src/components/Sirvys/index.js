@@ -22,6 +22,7 @@ class Sirvys extends Component {
     optionA: "",
     optionB: "",
     savedSirvys: [],
+    currentSirvy: [],
     sirvyToRender: undefined
   }
 
@@ -139,6 +140,14 @@ class Sirvys extends Component {
     console.log("hitting", index)
   }
 
+  addToCurrentSirvy = index => {
+    this.setState({
+      currentSirvy: [this.state.savedSirvys[index]]
+    })
+  }
+
+  removeCurrentSirvy = () => this.setState({ currentSirvy: [] })
+
   componentDidMount() {
     const { numbersToText, savedSirvys } = this.state
 
@@ -213,7 +222,9 @@ class Sirvys extends Component {
       optionA,
       optionB,
       savedSirvys,
-      sirvyToRender
+      sirvyToRender,
+      activeNumbers,
+      currentSirvy
     } = this.state
     const { currentUser } = this.props
     return (
@@ -279,10 +290,14 @@ class Sirvys extends Component {
         {error ? <p>{error}</p> : null}
         <SavingStyles>
           <CurrentNums
-            activeNumbers={this.state.activeNumbers}
+            activeNumbers={activeNumbers}
             removeFromCurrentNum={this.removeFromCurrentNum}
           />
-          <CurrentSirvy />
+          <CurrentSirvy
+            currentSirvy={currentSirvy}
+            sendSirvy={this.sendSirvy}
+            removeCurrentSirvy={this.removeCurrentSirvy}
+          />
         </SavingStyles>
         <SavingStyles>
           <DisplayNums
@@ -295,6 +310,7 @@ class Sirvys extends Component {
               savedSirvys={savedSirvys}
               sendSirvy={this.sendSirvy}
               deleteSirvy={this.deleteSirvy}
+              addToCurrentSirvy={this.addToCurrentSirvy}
             />
           ) : null}
         </SavingStyles>
