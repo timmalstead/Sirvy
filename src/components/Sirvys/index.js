@@ -129,27 +129,28 @@ class Sirvys extends Component {
     const { numbersToText, savedSirvys } = this.state
 
     const socket = SocketIOClient(process.env.REACT_APP_URL)
-    // const socket =SocketIOClient(process.env.REACT_APP_URL)
-    //switch between production and development socket prn
 
     socket.on("sms", data => {
-      console.log(data.data)
-      if (this.state.returnedTexts.length) {
-        const checkNumber = num =>
-          num.returningNumber !==
-          data.data[data.data.length - 1].returningNumber
-        if (this.state.returnedTexts.some(checkNumber)) {
+      if (this.state.returnedTexts.length < this.state.numbersToText.length) {
+        this.state.numbersToText.forEach((obj, i) => {
+          if (parseInt(obj.number) === parseInt(data.data.returningNumber)) {
+            data.data.name = obj.name
+          }
+        })
+
+        if (this.state.returnedTexts.length) {
+          const checkNumber = num =>
+            num.returningNumber !== data.data.returningNumber
+          if (this.state.returnedTexts.some(checkNumber)) {
+            this.setState({
+              returnedTexts: [...this.state.returnedTexts, data.data]
+            })
+          }
+        } else {
           this.setState({
-            returnedTexts: [
-              ...this.state.returnedTexts,
-              data.data[data.data.length - 1]
-            ]
+            returnedTexts: [data.data]
           })
         }
-      } else {
-        this.setState({
-          returnedTexts: data.data
-        })
       }
     })
 

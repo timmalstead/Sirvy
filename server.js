@@ -47,11 +47,11 @@ app.post("/sms", (req, res) => {
     returnedBody = "a"
   } else returnedBody = "b"
   const returnedText = {
-    returningNumber: req.body.From,
+    returningNumber: req.body.From.substring(2).trim(),
     returningText: returnedBody
   }
   textCache.push(returnedText)
-  io.emit("sms", { data: textCache })
+  io.emit("sms", { data: textCache[textCache.length - 1] })
 })
 
 app.get("/*", (req, res) => {
