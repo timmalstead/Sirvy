@@ -44,8 +44,6 @@ class GraphDisplay extends Component {
         : bArray.push(count.name)
     })
 
-    console.log(aArray, bArray)
-
     const data = [{ value: 100 * aCounter }, { value: 100 * bCounter }]
     const colors = ["#0088fe", "#dbcc66"]
 

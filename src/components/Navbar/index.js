@@ -135,7 +135,7 @@ class Navbar extends Component {
         ) : null}
         {this.props.isLoggedIn ? null : (
           <div className="bar">
-            <form onSubmit={this.thirdPartySignIn}>
+            {/* <form onSubmit={this.thirdPartySignIn}>
               <button
                 type="submit"
                 onMouseEnter={() => this.setState({ signInMethod: "google" })}
@@ -148,7 +148,7 @@ class Navbar extends Component {
               >
                 Login with Facebook
               </button>
-            </form>
+            </form> */}
             {signingUp ? (
               <SignUp
                 email={email}
