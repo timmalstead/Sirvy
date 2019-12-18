@@ -53,8 +53,6 @@ class Sirvys extends Component {
   }
 
   sendSirvy = async (e, i) => {
-    //fix on page send button
-
     const numbers = this.state.numbersToText.map(
       recipientNum => `1${recipientNum.number}`
     )
@@ -62,9 +60,7 @@ class Sirvys extends Component {
 
     const message = {
       names: names,
-      body: e.target.name
-        ? this.state.savedSirvys[i].sirvy
-        : this.state.textBody,
+      body: this.state.currentSirvy[0].sirvy,
       to: numbers
     }
 
@@ -137,7 +133,11 @@ class Sirvys extends Component {
   }
 
   removeFromCurrentNum = index => {
-    console.log("hitting", index)
+    this.setState({
+      activeNumbers: this.state.activeNumbers.filter(
+        (element, i) => i !== index
+      )
+    })
   }
 
   addToCurrentSirvy = index => {
@@ -238,7 +238,7 @@ class Sirvys extends Component {
             sendSirvy={this.sendSirvy}
           />
         ) : (
-          <form name="onPageSubmit" onSubmit={this.sendSirvy}>
+          <form>
             <h2>Your Sirvy will look like this:</h2>
             <p>Hello MESSAGE RECIPIENT</p>
             <p>
@@ -264,7 +264,6 @@ class Sirvys extends Component {
             <span>?</span>
             <p>Please reply ONLY with a lowercase a or b.</p>
             <p>Sent from Sirvy-Beautiful SMS Surveys</p>
-            {/* <button type='submit'>Send Sirvy</button> */}
             <button type="button" onClick={this.saveSirvy}>
               Save Sirvy
             </button>

@@ -50,7 +50,8 @@ None reported yet
 
 #### Next Steps
 
-- Add more CRUD functions for users and data
+- Finish current sirvy recipients
+- Add inability to add duplicate entrys to saved numbers or current numbers
 - Add drag and drop functionality to components
 - Add more charts and methods of data visualization
 - Further refine site styling and graphics

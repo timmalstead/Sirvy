@@ -3,14 +3,9 @@ import React from "react"
 import { SavedSirvyStyle } from "./style"
 
 const SavedSirvys = props => {
-  const sendUpSirvy = (e, i) => {
-    e.preventDefault()
-    props.sendSirvy(e, i)
-  }
-
   const displaySavedSirvys = props.savedSirvys.map((sirvy, i) => {
     return (
-      <form name="sendSaved" onSubmit={e => sendUpSirvy(e, i)} key={sirvy.key}>
+      <form>
         <span className="holder">
           {sirvy.sirvy
             .replace(/\n*/g, "")
@@ -23,9 +18,8 @@ const SavedSirvys = props => {
           <button type="button" onClick={() => props.deleteSirvy(sirvy.key)}>
             Delete Sirvy
           </button>
-          <button type="submit">Send Saved Sirvy</button>
           <button type="button" onClick={() => props.addToCurrentSirvy(i)}>
-            Add to Current Sirvy
+            Set as Current Sirvy
           </button>
         </span>
       </form>
