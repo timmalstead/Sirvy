@@ -7,7 +7,7 @@ Link to [Sirvy](https://sirvy.herokuapp.com/)
 Designed and developed by Timothy Malstead
 `timmalstead@gmail.com`
 
-#### Simple SMS Survyes
+#### Simple SMS Surveys
 
 Sirvy allows users to counduct surveys over SMS and render the collected data in charts, all while using a simple, clean and easy to naigate UX.
 
