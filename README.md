@@ -16,6 +16,7 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 ![Screen Shot 2019-12-11 at 5 34 34 PM](https://user-images.githubusercontent.com/54044142/70683739-5a8b4d80-1c58-11ea-9629-314a55eafd28.png)
 
 1. Users can log in, using third party verification or their own email.
+   (Update: third party verification is currently disabled until further notice. Apologies for the inconvenience.)
 
 2. Users can update their profile.
 
