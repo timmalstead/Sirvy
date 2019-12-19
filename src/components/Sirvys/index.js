@@ -52,11 +52,16 @@ class Sirvys extends Component {
     })
   }
 
-  sendSirvy = async (e, i) => {
-    const numbers = this.state.numbersToText.map(
+  sendSirvy = async () => {
+    // const numbers = this.state.numbersToText.map(
+    //   recipientNum => `1${recipientNum.number}`
+    // )
+    // const names = this.state.numbersToText.map(names => names.name)
+
+    const numbers = this.state.activeNumbers.map(
       recipientNum => `1${recipientNum.number}`
     )
-    const names = this.state.numbersToText.map(names => names.name)
+    const names = this.state.activeNumbers.map(names => names.name)
 
     const message = {
       names: names,
@@ -73,6 +78,7 @@ class Sirvys extends Component {
     })
 
     const sent = await sending.json()
+
     this.setState({
       returnedTexts: [],
       sirvyToRender: message.body
@@ -127,8 +133,11 @@ class Sirvys extends Component {
 
   addCurrentNum = index => {
     const { activeNumbers, numbersToText } = this.state
+
+    const updatedNums = [...activeNumbers, numbersToText[index]]
+
     this.setState({
-      activeNumbers: [...activeNumbers, numbersToText[index]]
+      activeNumbers: [...new Set(updatedNums)]
     })
   }
 
@@ -229,13 +238,11 @@ class Sirvys extends Component {
     const { currentUser } = this.props
     return (
       <SirvyStyle>
-        {returnedTexts.length >= numbersToText.length &&
+        {returnedTexts.length >= activeNumbers.length &&
         returnedTexts.length ? (
           <GraphDisplay
             sirvyToRender={sirvyToRender}
             returnedTexts={returnedTexts}
-            deleteSirvy={this.deleteSirvy}
-            sendSirvy={this.sendSirvy}
           />
         ) : (
           <form>
@@ -307,7 +314,6 @@ class Sirvys extends Component {
           {savedSirvys ? (
             <SavedSirvys
               savedSirvys={savedSirvys}
-              sendSirvy={this.sendSirvy}
               deleteSirvy={this.deleteSirvy}
               addToCurrentSirvy={this.addToCurrentSirvy}
             />

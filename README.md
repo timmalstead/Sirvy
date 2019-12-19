@@ -50,12 +50,10 @@ None reported yet
 
 #### Next Steps
 
-- Finish current sirvy recipients
-- Add inability to add duplicate entrys to saved numbers or current numbers
 - Add drag and drop functionality to components
-- Add more charts and methods of data visualization
 - Further refine site styling and graphics
-- Add option to export and send graphics
+- Add more charts and methods of data visualization
+- Add option to export and send graphics, and to save sirvy results
 
 #### Special Thanks
 

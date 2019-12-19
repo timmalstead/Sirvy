@@ -3,14 +3,14 @@ import { HolderStyle } from "../DisplayNums/style"
 import { SavedSirvyStyle } from "../SavedSirvys/style"
 
 const CurrentSirvy = props => {
-  const sendUpSirvy = (e, i) => {
+  const sendUpSirvy = e => {
     e.preventDefault()
-    props.sendSirvy(e, i)
+    props.sendSirvy()
   }
 
   const displayCurrentSirvy = props.currentSirvy.map((sirvy, i) => {
     return (
-      <form name="sendSaved" onSubmit={e => sendUpSirvy(e, i)} key={sirvy.key}>
+      <form name="sendSaved" onSubmit={e => sendUpSirvy(e)} key={sirvy.key}>
         <span className="holder">
           {sirvy.sirvy
             .replace(/\n*/g, "")
