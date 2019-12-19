@@ -1,8 +1,8 @@
 ## Sirvy
 
-Link to use ===>
+Link to [Sirvy](https://sirvy.herokuapp.com/)
 
-###### Version 1.0
+###### Version 1.1
 
 Designed and developed by Timothy Malstead
 `timmalstead@gmail.com`
@@ -33,7 +33,7 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 
 #### Technologies Used
 
-- HTML
+- HTML5
 - CSS3
 - JavaScript
 - Node JS
@@ -42,11 +42,11 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 - Express
 - Twilio API and NPM packages
 - Recharts NPM package
-- Google Firebase
+- Google Firebase Realtime Database and Authentication
 
 #### Known Issues
 
-None reported yet
+Some issues with auto fill functions of password managers have been observed. If you are having this issue, try inputting your password manually.
 
 #### Next Steps
 
