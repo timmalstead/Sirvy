@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import { PieChart, Pie, Cell } from "recharts"
+import html2canvas from "html2canvas"
+import { saveAs } from "file-saver"
 
 import { GraphStyle, TitleStyle } from "./style"
+import randomColor from "./randomColor"
 
 class GraphDisplay extends Component {
   state = {
@@ -12,6 +15,15 @@ class GraphDisplay extends Component {
     renderCustomizedLabel: undefined,
     aArray: [],
     bArray: []
+  }
+
+  displaySvg = () => {
+    const { optionA, optionB } = this.state
+    html2canvas(document.querySelector("#pie-chart-wrapper"), {
+      backgroundColor: "#151515"
+    }).then(pic =>
+      pic.toBlob(blob => saveAs(blob, `${optionA}-${optionB} Sirvy.png`))
+    )
   }
 
   componentDidMount() {
@@ -45,7 +57,7 @@ class GraphDisplay extends Component {
     })
 
     const data = [{ value: 100 * aCounter }, { value: 100 * bCounter }]
-    const colors = ["#0088fe", "#dbcc66"]
+    const colors = randomColor()
 
     const radian = Math.PI / 180
 
@@ -95,11 +107,19 @@ class GraphDisplay extends Component {
       bArray
     } = this.state
 
-    const mappedA = aArray.map(vote => <p>{vote}</p>)
-    const mappedB = bArray.map(vote => <p>{vote}</p>)
+    const color1 = colors[0]
+    const color2 = colors[1]
+    console.log(color1, color2)
+
+    const mappedA = aArray.map(vote => (
+      <p style={{ color: color1 } && { color: color1 }}>{vote}</p>
+    ))
+    const mappedB = bArray.map(vote => (
+      <p style={{ color: color2 } && { color: color2 }}>{vote}</p>
+    ))
 
     return (
-      <GraphStyle>
+      <GraphStyle id="pie-chart-wrapper">
         <PieChart width={700} height={700} onMouseEnter={this.onPieEnter}>
           <Pie
             data={data}
@@ -117,13 +137,26 @@ class GraphDisplay extends Component {
         </PieChart>
         <TitleStyle>
           <details>
-            <summary className={"blue-text"}>{optionA}</summary>
+            <summary
+              style={{ color: color1 } && { color: color1 }}
+              className={"first-text"}
+            >
+              {optionA}
+            </summary>
             {mappedA}
           </details>
           <details>
-            <summary className={"yellow-text"}>{optionB}</summary>
+            <summary
+              style={{ color: color2 } && { color: color2 }}
+              className={"second-text"}
+            >
+              {optionB}
+            </summary>
             {mappedB}
           </details>
+          <button onClick={this.displaySvg} data-html2canvas-ignore>
+            Save Sirvy
+          </button>
         </TitleStyle>
       </GraphStyle>
     )

@@ -2,7 +2,7 @@
 
 Link to [Sirvy](https://sirvy.herokuapp.com/)
 
-###### Version 1.1
+###### Version 1.2
 
 Designed and developed by Timothy Malstead
 `timmalstead@gmail.com`
@@ -42,7 +42,7 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 - JSX
 - Express
 - Twilio API and NPM packages
-- Recharts NPM package
+- Recharts, Html2Canvas and FileSaver NPM packages
 - Google Firebase Realtime Database and Authentication
 
 #### Known Issues
@@ -51,10 +51,10 @@ Some issues with auto fill functions of password managers have been observed. If
 
 #### Next Steps
 
-- Add drag and drop functionality to components
+- See once and for all if third party Login will work, cleanup files per mike's review notes
 - Further refine site styling and graphics
+- Add drag and drop functionality to components
 - Add more charts and methods of data visualization
-- Add option to export and send graphics, and to save sirvy results
 
 #### Special Thanks
 

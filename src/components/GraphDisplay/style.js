@@ -23,17 +23,12 @@ const TitleStyle = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  .blue-text,
-  .yellow-text {
+  .first-text,
+  .second-text {
     font-size: 3em;
   }
 
-  .blue-text {
-    color: #0088fe;
-  }
-
-  .yellow-text {
-    color: #dbcc66;
+  .second-text {
     margin: 0 0 0 1em;
   }
 `
