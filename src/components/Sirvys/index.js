@@ -53,11 +53,6 @@ class Sirvys extends Component {
   }
 
   sendSirvy = async () => {
-    // const numbers = this.state.numbersToText.map(
-    //   recipientNum => `1${recipientNum.number}`
-    // )
-    // const names = this.state.numbersToText.map(names => names.name)
-
     const numbers = this.state.activeNumbers.map(
       recipientNum => `1${recipientNum.number}`
     )

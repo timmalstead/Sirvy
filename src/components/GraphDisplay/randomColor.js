@@ -8,7 +8,7 @@ const randomColor = () => {
   onOff && hue2 + split < 359
     ? (hue2 = hue2 + split)
     : !onOff && !hue2 - split < 0
-    ? (hue2 = hue2 = split)
+    ? (hue2 = hue2 - split)
     : null
 
   const satArray = []

@@ -17,7 +17,7 @@ class GraphDisplay extends Component {
     bArray: []
   }
 
-  displaySvg = () => {
+  savePng = () => {
     const { optionA, optionB } = this.state
     html2canvas(document.querySelector("#pie-chart-wrapper"), {
       backgroundColor: "#151515"
@@ -154,7 +154,7 @@ class GraphDisplay extends Component {
             </summary>
             {mappedB}
           </details>
-          <button onClick={this.displaySvg} data-html2canvas-ignore>
+          <button onClick={this.savePng} data-html2canvas-ignore>
             Save Sirvy
           </button>
         </TitleStyle>

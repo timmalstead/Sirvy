@@ -7,7 +7,7 @@ Link to [Sirvy](https://sirvy.herokuapp.com/)
 Designed and developed by Timothy Malstead
 `timmalstead@gmail.com`
 
-#### Simple SMS Surveys
+#### SMS Surveys Made Simple
 
 Sirvy allows users to counduct surveys over SMS and render the collected data in charts, all while using a simple, clean and easy to naigate UX.
 
@@ -15,8 +15,7 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 
 ![Screen Shot 2019-12-11 at 5 34 34 PM](https://user-images.githubusercontent.com/54044142/70683739-5a8b4d80-1c58-11ea-9629-314a55eafd28.png)
 
-1. Users can log in, using third party verification or their own email.
-   (Update: third party verification is currently disabled until further notice. Apologies for the inconvenience.)
+1. Users can log in, using an email and a password they select.
 
 2. Users can update their profile.
 
@@ -30,7 +29,7 @@ Sirvy allows users to counduct surveys over SMS and render the collected data in
 
 ![Screen Shot 2019-12-11 at 5 40 07 PM](https://user-images.githubusercontent.com/54044142/70683738-5a8b4d80-1c58-11ea-8a2c-ae8aebb64df9.png)
 
-5. A user can then visualize the data of those surveys.
+5. A user can then visualize the data of those surveys and save that visualization locally.
 
 #### Technologies Used
 
@@ -51,10 +50,11 @@ Some issues with auto fill functions of password managers have been observed. If
 
 #### Next Steps
 
-- See once and for all if third party Login will work, cleanup files per mike's review notes
 - Further refine site styling and graphics
+- Render votes before all votes are returned
 - Add drag and drop functionality to components
 - Add more charts and methods of data visualization
+- Redo third party login
 
 #### Special Thanks
 
