@@ -19,6 +19,7 @@ class GraphDisplay extends Component {
 
   savePng = () => {
     const { optionA, optionB } = this.state
+
     html2canvas(document.querySelector("#pie-chart-wrapper"), {
       backgroundColor: "#151515"
     }).then(pic =>
@@ -109,7 +110,6 @@ class GraphDisplay extends Component {
 
     const color1 = colors[0]
     const color2 = colors[1]
-    console.log(color1, color2)
 
     const mappedA = aArray.map(vote => (
       <p style={{ color: color1 } && { color: color1 }}>{vote}</p>
@@ -155,7 +155,7 @@ class GraphDisplay extends Component {
             {mappedB}
           </details>
           <button onClick={this.savePng} data-html2canvas-ignore>
-            Save Sirvy
+            Save Result
           </button>
         </TitleStyle>
       </GraphStyle>

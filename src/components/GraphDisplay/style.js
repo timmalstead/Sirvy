@@ -23,6 +23,10 @@ const TitleStyle = styled.div`
   justify-content: flex-start;
   align-items: center;
 
+  button {
+    align-self: flex-start;
+  }
+
   .first-text,
   .second-text {
     font-size: 3em;

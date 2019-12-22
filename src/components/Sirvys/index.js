@@ -266,9 +266,6 @@ class Sirvys extends Component {
             <span>?</span>
             <p>Please reply ONLY with a lowercase a or b.</p>
             <p>Sent from Sirvy-Beautiful SMS Surveys</p>
-            <button type="button" onClick={this.saveSirvy}>
-              Save Sirvy
-            </button>
           </form>
         )}
         <form onSubmit={this.addSirvyRecipient}>
@@ -287,6 +284,9 @@ class Sirvys extends Component {
             onChange={this.onChange}
           />
           <button type="submit">Save Sirvy Recipient</button>
+          <button type="button" onClick={this.saveSirvy}>
+            Save Sirvy
+          </button>
         </form>
         {error ? <p>{error}</p> : null}
         <SavingStyles>

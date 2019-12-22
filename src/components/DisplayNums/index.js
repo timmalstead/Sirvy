@@ -6,15 +6,17 @@ const DisplayNums = props => {
     <li key={i}>
       <span className="holder">
         <span className="name-and-number">{num.name}</span>
-        <span className="name-and-number">-</span>
+        <span className="name-and-number"> - </span>
         <span className="name-and-number">{num.number}</span>
       </span>
-      <button type="button" onClick={() => props.deleteNumber(num.key)}>
-        Delete Number
-      </button>
-      <button type="button" onClick={() => props.addCurrentNum(i)}>
-        Add to Current
-      </button>
+      <span>
+        <button type="button" onClick={() => props.deleteNumber(num.key)}>
+          Delete
+        </button>
+        <button type="button" onClick={() => props.addCurrentNum(i)}>
+          Add to Current Sirvy
+        </button>
+      </span>
     </li>
   ))
 

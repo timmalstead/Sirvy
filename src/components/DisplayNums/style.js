@@ -1,13 +1,11 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 const HolderStyle = styled.div`
-    width : 48vw;
+  width: 48vw;
 
-    @media (max-width: 950px) {
-        
-    width : 96vw;
-
-}
+  @media (max-width: 950px) {
+    width: 96vw;
+  }
 `
 
 const UlStyle = styled.ul`
@@ -33,6 +31,13 @@ const UlStyle = styled.ul`
         color : #ec4e20;
     }
 
+    @media (max-width: 750px) {
+        
+        li {
+            flex-direction : column;
+            align-items : center;
+        }
+
     @keyframes pulse2s {
   0% {
       transform : scale(0.98);
@@ -48,4 +53,4 @@ const UlStyle = styled.ul`
 }
 `
 
-export {UlStyle, HolderStyle}
+export { UlStyle, HolderStyle }
