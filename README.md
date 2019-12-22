@@ -54,7 +54,7 @@ Some issues with auto fill functions of password managers have been observed. If
 - Render votes before all votes are returned
 - Add drag and drop functionality to components
 - Add more charts and methods of data visualization
-- Redo third party login
+- Enable third party login
 
 #### Special Thanks
 

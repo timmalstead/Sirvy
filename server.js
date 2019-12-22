@@ -1,25 +1,27 @@
 const express = require("express")
-const dotenv = require("dotenv")
 const path = require("path")
+const http = require("http")
+const io = require("socket.io")()
+const dotenv = require("dotenv")
+
 dotenv.config()
+
 const client = require("twilio")(
   process.env.TWILIO_SID,
   process.env.TWILIO_TOKEN
 )
-const http = require("http")
-const io = require("socket.io")()
 
 const app = express()
-app.use(express.static(path.join(__dirname, "build")))
-const server = http.Server(app)
-io.attach(server)
 
+app.use(express.static(path.join(__dirname, "build")))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-const PORT = process.env.PORT
-
+const server = http.Server(app)
+io.attach(server)
 io.on("connect", () => console.log("connected to socket"))
+
+const PORT = process.env.PORT
 
 const textCache = []
 
