@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { NavLink, withRouter } from "react-router-dom"
+import sirvyLogo from "./sirvyLogo.svg"
 
 import {
   createUserWithEmailAndPassword,
@@ -112,6 +113,7 @@ class Navbar extends Component {
       <NavStyle>
         {this.props.isLoggedIn ? (
           <nav>
+            <img src={sirvyLogo} alt="logo" />
             <div>
               <NavLink exact to="/">
                 Home
@@ -135,6 +137,7 @@ class Navbar extends Component {
         ) : null}
         {this.props.isLoggedIn ? null : (
           <div className="bar">
+            <img src={sirvyLogo} alt="logo" />
             {/* <form onSubmit={this.thirdPartySignIn}>
               <button
                 type="submit"

@@ -1,38 +1,41 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 const NavStyle = styled.header`
-    
-    nav {
-        display : flex;
-        flex-wrap : wrap;
-        justify-content : space-between;
-    }
-    
-    a {
-        margin : 0 .5em 0 0;
-    }
-        
-    .logOut {
-        background-color : #151515;
-        color : #FF9505;
-        font-size : .9em;
-        font-weight : 100;
-        line-height : .2em;
-        margin : 0;
-        font-family : Georgia, 'Times New Roman', Times, serif;
-    }
-    
-    .bar {
-        display : flex;
-        flex-wrap : wrap;
-        justify-content : flex-end;
-    }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .active {
-        color : #EC4E20;
-        border-bottom : .2em solid #EC4E20;
-    }
-    
+  a {
+    margin: 0 0.5em 0 0;
+  }
+  img {
+    display: inline;
+  }
+
+  .logOut {
+    background-color: #151515;
+    color: #ff9505;
+    font-size: 0.9em;
+    font-weight: 100;
+    line-height: 0.2em;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .active {
+    color: #ec4e20;
+    border-bottom: 0.2em solid #ec4e20;
+  }
 `
 
-export {NavStyle}
+export { NavStyle }
