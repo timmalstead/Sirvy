@@ -36,6 +36,14 @@ const NavStyle = styled.header`
     color: #ec4e20;
     border-bottom: 0.2em solid #ec4e20;
   }
+
+  @media (max-width: 1100px) {
+    nav,
+    .bar {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `
 
 export { NavStyle }
