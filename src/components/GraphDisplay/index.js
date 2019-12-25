@@ -120,21 +120,23 @@ class GraphDisplay extends Component {
 
     return (
       <GraphStyle id="pie-chart-wrapper">
-        <PieChart width={700} height={700} onMouseEnter={this.onPieEnter}>
-          <Pie
-            data={data}
-            cx={350}
-            cy={350}
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={300}
-            fill="#8884d8"
-          >
-            {data.map((entry, index) => (
-              <Cell fill={colors[index % colors.length]} />
-            ))}
-          </Pie>
-        </PieChart>
+        <div>
+          <PieChart width={700} height={700} onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={data}
+              cx={350}
+              cy={350}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={300}
+              fill="#8884d8"
+            >
+              {data.map((entry, index) => (
+                <Cell fill={colors[index % colors.length]} />
+              ))}
+            </Pie>
+          </PieChart>
+        </div>
         <TitleStyle>
           <details>
             <summary

@@ -11,11 +11,6 @@ const GraphStyle = styled.div`
     justify-content: center;
     align-items: center;
   }
-
-  div {
-    display: inherit;
-    justify-content: inherit;
-  }
 `
 
 const TitleStyle = styled.div`
@@ -24,7 +19,7 @@ const TitleStyle = styled.div`
   align-items: center;
 
   button {
-    align-self: flex-start;
+    align-self: flex-end;
   }
 
   .first-text,

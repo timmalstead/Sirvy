@@ -50,7 +50,6 @@ Some issues with auto fill functions of password managers have been observed. If
 
 #### Next Steps
 
-- Further refine site styling and graphics
 - Render votes before all votes are returned
 - Add drag and drop functionality to components
 - Add more charts and methods of data visualization
